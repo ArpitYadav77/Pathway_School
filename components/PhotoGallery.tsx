@@ -6,7 +6,7 @@ export default async function PhotoGallery() {
   
   // Flatten galleries into individual photos
   const photos = galleries
-    ? galleries.flatMap((g: any) =>
+    ? galleries.flatMap((g: { title: string; images: string[] }) =>
         (g.images || []).map((img: string) => ({
           image: img,
           title: g.title,
@@ -36,7 +36,7 @@ export default async function PhotoGallery() {
           <p className="text-center text-gray-500 text-lg">No gallery images available.</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {photos.map((photo: any, i: number) => (
+            {photos.map((photo: { image: string; title: string }, i: number) => (
               <div
                 key={i}
                 className={`rounded-2xl overflow-hidden shadow-md cursor-pointer group relative img-zoom animate-fade-in-up ${
