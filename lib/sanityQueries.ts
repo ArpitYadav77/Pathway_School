@@ -2,7 +2,7 @@ import { client } from "./sanityClient";
 
 export async function getNotices() {
   return client.fetch(
-    `*[_type == "notice"] | order(date desc)[0...3]`,
+    `*[_type == "notice"] | order(date desc)[0...10]`,
     {},
     { cache: "no-store" }
   );

@@ -9,7 +9,7 @@ import Facilities from "@/components/Facilities";
 import EnrollmentCTA from "@/components/EnrollmentCTA";
 import PhotoGallery from "@/components/PhotoGallery";
 import Footer from "@/components/Footer";
-import NoticeBoard from "@/components/NoticeBoard";
+import SideNoticeBoard from "@/components/SideNoticeBoard";
 import FloatingButtons from "@/components/FloatingButtons";
 
 export default function Home() {
@@ -17,8 +17,14 @@ export default function Home() {
     <main>
       <TopBar />
       <Navbar />
-      <Hero />
-      <NoticeBoard />
+      <div className="flex flex-col lg:flex-row w-full bg-[#fdf8e6]">
+        <div className="w-full lg:w-[70%]">
+          <Hero />
+        </div>
+        <div className="w-full lg:w-[30%]">
+          <SideNoticeBoard />
+        </div>
+      </div>
       <ActivityGallery />
       <AboutSection />
       <KidsActivities />
