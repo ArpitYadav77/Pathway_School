@@ -123,7 +123,7 @@ export default function Navbar() {
           : "bg-white py-4"
       }`}
     >
-      <div className="max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-4 md:px-8">
+      <div className="w-full px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group shrink-0">
@@ -146,7 +146,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center justify-end flex-grow px-2 xl:px-8">
+          <div className="hidden lg:flex items-center justify-end xl:justify-center flex-grow px-2 md:px-4">
             <ul className="flex items-center gap-1 xl:gap-2">
               {menuItems.map((item) => (
                 <li
