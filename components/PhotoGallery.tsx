@@ -46,7 +46,7 @@ export default async function PhotoGallery() {
               >
                 <div
                   className={`relative ${
-                    i === 0 || i === 5 ? "h-[300px] sm:h-full" : "h-[200px] sm:h-[220px]"
+                    i === 0 || i === 5 ? "h-[300px] sm:h-[456px]" : "h-[200px] sm:h-[220px]"
                   }`}
                 >
                   <Image
