@@ -108,7 +108,7 @@ export default function Navbar() {
   const isParentActive = (item: MenuItem) => {
     if (item.link && isActive(item.link)) return true;
     if (item.submenu) {
-      return item.submenu.some(sub => 
+      return item.submenu.some(sub =>
         isActive(sub.link) || (sub.submenu && sub.submenu.some(nested => isActive(nested.link)))
       );
     }
@@ -117,11 +117,10 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled 
-          ? "bg-white/95 backdrop-blur-md shadow-lg py-2" 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+          ? "bg-white/95 backdrop-blur-md shadow-lg py-2"
           : "bg-white py-4"
-      }`}
+        }`}
     >
       <div className="w-full px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -130,14 +129,14 @@ export default function Navbar() {
             <div className="relative w-12 h-12 md:w-14 md:h-14 overflow-hidden rounded-full border-2 border-primary/10 group-hover:border-accent/40 transition-colors duration-300">
               <Image
                 src="/images/logo.png"
-                alt="Pathway School Logo"
+                alt="The Seekers International School Logo"
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-500"
               />
             </div>
             <div className="flex flex-col">
               <span className="text-secondary font-extrabold text-xl md:text-2xl leading-none tracking-tight group-hover:text-primary transition-colors duration-300">
-                PATHWAY
+                THE SEEKERS
               </span>
               <span className="text-[10px] md:text-xs text-accent font-bold uppercase tracking-[0.2em]">
                 International School
@@ -160,17 +159,16 @@ export default function Navbar() {
                 >
                   <Link
                     href={item.link || "#"}
-                    className={`flex items-center gap-1 px-3 py-2 text-[15px] font-semibold transition-all duration-300 rounded-full whitespace-nowrap ${
-                      isParentActive(item) 
-                        ? "text-white bg-accent shadow-md" 
+                    className={`flex items-center gap-1 px-3 py-2 text-[15px] font-semibold transition-all duration-300 rounded-full whitespace-nowrap ${isParentActive(item)
+                        ? "text-white bg-accent shadow-md"
                         : "text-gray-700 hover:text-accent"
-                    }`}
+                      }`}
                   >
                     {item.name}
                     {item.submenu && (
-                      <ChevronDown 
-                        size={16} 
-                        className={`transition-transform duration-300 ${activeMenu === item.name ? 'rotate-180' : ''}`} 
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform duration-300 ${activeMenu === item.name ? 'rotate-180' : ''}`}
                       />
                     )}
                   </Link>
@@ -178,11 +176,10 @@ export default function Navbar() {
                   {/* Level 1 Dropdown */}
                   {item.submenu && (
                     <div
-                      className={`absolute left-1/2 -translate-x-1/2 top-full pt-4 transition-all duration-300 origin-top transform ${
-                        activeMenu === item.name 
-                          ? "opacity-100 scale-100 translate-y-0 visible" 
+                      className={`absolute left-1/2 -translate-x-1/2 top-full pt-4 transition-all duration-300 origin-top transform ${activeMenu === item.name
+                          ? "opacity-100 scale-100 translate-y-0 visible"
                           : "opacity-0 scale-95 -translate-y-4 invisible"
-                      }`}
+                        }`}
                     >
                       <div className="bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] border border-gray-100 overflow-hidden min-w-[240px] p-2">
                         {item.submenu.map((sub) => (
@@ -194,11 +191,10 @@ export default function Navbar() {
                           >
                             <Link
                               href={sub.link || "#"}
-                              className={`flex items-center justify-between px-4 py-3 text-[14px] font-medium rounded-xl transition-all duration-200 ${
-                                isActive(sub.link) 
-                                  ? "text-accent bg-accent/5" 
+                              className={`flex items-center justify-between px-4 py-3 text-[14px] font-medium rounded-xl transition-all duration-200 ${isActive(sub.link)
+                                  ? "text-accent bg-accent/5"
                                   : "text-gray-600 hover:text-accent hover:bg-gray-50"
-                              }`}
+                                }`}
                             >
                               {sub.name}
                               {sub.submenu && <ChevronRight size={16} opacity={0.5} />}
@@ -207,22 +203,20 @@ export default function Navbar() {
                             {/* Level 2 Submenu */}
                             {sub.submenu && (
                               <div
-                                className={`absolute left-full top-0 pl-1 transition-all duration-300 transform ${
-                                  activeSubmenu === sub.name 
-                                    ? "opacity-100 scale-100 translate-x-0 visible" 
+                                className={`absolute left-full top-0 pl-1 transition-all duration-300 transform ${activeSubmenu === sub.name
+                                    ? "opacity-100 scale-100 translate-x-0 visible"
                                     : "opacity-0 scale-95 -translate-x-4 invisible"
-                                }`}
+                                  }`}
                               >
                                 <div className="bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] border border-gray-100 overflow-hidden min-w-[220px] p-2">
                                   {sub.submenu.map((nested) => (
                                     <Link
                                       key={nested.name}
                                       href={nested.link || "#"}
-                                      className={`block px-4 py-3 text-[13px] font-medium rounded-xl transition-all duration-200 ${
-                                        isActive(nested.link) 
-                                          ? "text-accent bg-accent/5" 
+                                      className={`block px-4 py-3 text-[13px] font-medium rounded-xl transition-all duration-200 ${isActive(nested.link)
+                                          ? "text-accent bg-accent/5"
                                           : "text-gray-600 hover:text-accent hover:bg-gray-50"
-                                      }`}
+                                        }`}
                                     >
                                       {nested.name}
                                     </Link>
@@ -242,13 +236,13 @@ export default function Navbar() {
 
           {/* Action Button / Mobile Toggle */}
           <div className="flex items-center gap-4">
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               className="hidden xl:flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 shadow-md hover:shadow-primary/20 shrink-0"
             >
               Apply Now
             </Link>
-            
+
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="lg:hidden p-2 rounded-xl bg-gray-50 text-secondary hover:text-accent transition-colors"
@@ -262,9 +256,8 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed inset-x-0 top-[70px] bg-white border-t border-gray-100 shadow-2xl transition-all duration-500 ease-in-out overflow-y-auto ${
-          isOpen ? "h-[calc(100vh-70px)] opacity-100" : "h-0 opacity-0 pointer-events-none"
-        }`}
+        className={`lg:hidden fixed inset-x-0 top-[70px] bg-white border-t border-gray-100 shadow-2xl transition-all duration-500 ease-in-out overflow-y-auto ${isOpen ? "h-[calc(100vh-70px)] opacity-100" : "h-0 opacity-0 pointer-events-none"
+          }`}
       >
         <div className="px-6 py-8 space-y-4">
           {menuItems.map((item) => (
@@ -303,9 +296,8 @@ export default function Navbar() {
               {/* Mobile Submenu Level 1 */}
               {item.submenu && (
                 <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    activeMenu === item.name ? "max-h-[1000px] opacity-100 mt-2" : "max-h-0 opacity-0"
-                  }`}
+                  className={`overflow-hidden transition-all duration-300 ${activeMenu === item.name ? "max-h-[1000px] opacity-100 mt-2" : "max-h-0 opacity-0"
+                    }`}
                 >
                   <div className="grid gap-1 pl-4 border-l-2 border-accent/10">
                     {item.submenu.map((sub) => (
@@ -341,9 +333,8 @@ export default function Navbar() {
                         {/* Mobile Submenu Level 2 */}
                         {sub.submenu && (
                           <div
-                            className={`overflow-hidden transition-all duration-300 pl-4 ${
-                              activeSubmenu === sub.name ? "max-h-[300px] opacity-100 pb-2" : "max-h-0 opacity-0"
-                            }`}
+                            className={`overflow-hidden transition-all duration-300 pl-4 ${activeSubmenu === sub.name ? "max-h-[300px] opacity-100 pb-2" : "max-h-0 opacity-0"
+                              }`}
                           >
                             <div className="grid gap-2 py-2">
                               {sub.submenu.map((nested) => (
@@ -377,14 +368,14 @@ export default function Navbar() {
               Apply Now
             </Link>
           </div>
-          
+
           {/* Mobile Contacts */}
           <div className="grid grid-cols-2 gap-4 pt-4">
             <a href="tel:+1234567890" className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-gray-50 text-gray-600">
               <Phone size={20} className="text-primary" />
               <span className="text-xs font-bold uppercase">Call Us</span>
             </a>
-            <a href="mailto:info@pathwayschool.com" className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-gray-50 text-gray-600">
+            <a href="mailto:info@theseekersinternational.com" className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-gray-50 text-gray-600">
               <Mail size={20} className="text-primary" />
               <span className="text-xs font-bold uppercase">Email</span>
             </a>
