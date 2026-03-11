@@ -1,4 +1,6 @@
-import { notices } from "@/lib/mockdata"
+const notices = [
+  { _id: '1', title: 'Test Notice', content: 'This is a test notice.', date: '2024-03-12' }
+];
 
 export default function NoticeBoard() {
   return (
