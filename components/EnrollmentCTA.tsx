@@ -1,12 +1,21 @@
-"use client";
-
 import { Rocket, Plane, Star, Sparkles } from "lucide-react";
+import { getCategorizedImages } from "@/lib/imageUtils";
 
-export default function EnrollmentCTA() {
+export default async function EnrollmentCTA() {
+  const { hero } = await getCategorizedImages();
+  
+  // Use a second hero image or fallback to the first
+  const bgImage = hero.length > 1 ? hero[1] : (hero.length > 0 ? hero[0] : null);
+
   return (
-    <section className="py-20 relative overflow-hidden" style={{
-      background: "linear-gradient(135deg, #7C3AED, #9333EA)"
-    }}>
+    <section 
+      className="py-20 relative overflow-hidden" 
+      style={{
+        background: bgImage 
+          ? `linear-gradient(135deg, rgba(124, 58, 237, 0.9), rgba(147, 51, 234, 0.9)), url(${bgImage}) center/cover no-repeat`
+          : "linear-gradient(135deg, #7C3AED, #9333EA)"
+      }}
+    >
       {/* Decorative Icons */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Planet */}

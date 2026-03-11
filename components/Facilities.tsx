@@ -1,7 +1,6 @@
-"use client";
-
 import Image from "next/image";
 import { Bus, Sun, Utensils, CheckCircle } from "lucide-react";
+import { getCategorizedImages } from "@/lib/imageUtils";
 
 const facilities = [
   {
@@ -33,20 +32,28 @@ const facilities = [
   },
 ];
 
-export default function Facilities() {
+export default async function Facilities() {
+  const { informational, generalGallery } = await getCategorizedImages();
+  
+  // Use first informational image or fallback to a general image if available
+  const imageSrc = informational.length > 0 
+    ? informational[0] 
+    : (generalGallery.length > 0 ? generalGallery[0] : "/images/kids-stage.png");
+
   return (
     <section id="facilities" className="py-20 bg-white">
       <div className="max-w-[1280px] mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left - Image */}
           <div className="relative animate-slide-in-left">
-            <div className="rounded-2xl overflow-hidden shadow-xl">
+            <div className="rounded-2xl overflow-hidden shadow-xl relative w-full h-[350px] md:h-[450px]">
               <Image
-                src="/images/kids-stage.png"
+                src={imageSrc}
                 alt="Kids speaking on stage"
-                width={600}
-                height={450}
-                className="object-cover w-full h-[350px] md:h-[450px]"
+                fill
+                sizes="(max-width: 768px) 100vw, 600px"
+                className="object-cover"
+                loading="lazy"
               />
             </div>
             {/* Stats overlay */}

@@ -3,46 +3,57 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { getCategorizedImages } from "@/lib/imageUtils";
 
-const slides = [
-  {
-    image: "/images/hero-banner.png",
-    title: "Where Learning is an Adventure",
-    subtitle:
-      "At The Seekers International, we believe every child is unique. Our nurturing environment inspires curiosity, creativity, and a lifelong love for learning.",
-  },
-  {
-    image: "/images/about1.png",
-    title: "Building Tomorrow's Leaders",
-    subtitle:
-      "Through innovative teaching methods and a caring community, we prepare children for a bright future filled with endless possibilities.",
-  },
-  {
-    image: "/images/about2.png",
-    title: "Play, Learn, and Grow",
-    subtitle:
-      "Our state-of-the-art facilities and experienced educators create the perfect environment for your child's holistic development.",
-  },
-];
+const staticContent = {
+  title: "Where Learning is an Adventure",
+  subtitle:
+    "At The Seekers International, we believe every child is unique. Our nurturing environment inspires curiosity, creativity, and a lifelong love for learning.",
+};
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
+  const [images, setImages] = useState<string[]>([]);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(timer);
+    getCategorizedImages().then((res) => {
+      // Prioritize the new Hero folder images, fallback to matching root hero images, then fallback to safe static
+      if (res.heroFolder && res.heroFolder.length > 0) {
+        setImages(res.heroFolder);
+      } else if (res.hero && res.hero.length > 0) {
+        setImages(res.hero);
+      } else {
+        setImages(["/images/hero-banner.png"]);
+      }
+    });
   }, []);
 
+  useEffect(() => {
+    if (images.length <= 1 || isPaused) return;
+
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [images.length, isPaused]);
+
   const prev = () =>
-    setCurrent((c) => (c - 1 + slides.length) % slides.length);
-  const next = () => setCurrent((c) => (c + 1) % slides.length);
+    setCurrent((c) => (c - 1 + images.length) % images.length);
+  const next = () => setCurrent((c) => (c + 1) % images.length);
+
+  // If we haven't loaded yet, show a safe default to prevent layout shift
+  const displayImages = images.length > 0 ? images : ["/images/hero-banner.png"];
 
   return (
-    <section id="home" className="relative h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden">
-      {/* Slides */}
-      {slides.map((slide, i) => (
+    <section 
+      id="home" 
+      className="relative h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {/* Slides (Backgrounds only) */}
+      {displayImages.map((imageSrc, i) => (
         <div
           key={i}
           className={`absolute inset-0 transition-opacity duration-1000 ${
@@ -50,25 +61,26 @@ export default function Hero() {
           }`}
         >
           <Image
-            src={slide.image}
-            alt={slide.title}
+            src={imageSrc}
+            alt={`Hero Slide ${i + 1}`}
             fill
             className="object-cover"
             priority={i === 0}
+            loading={i === 0 ? "eager" : "lazy"}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
         </div>
       ))}
 
-      {/* Overlay Card */}
+      {/* Overlay Card (Static across slide transitions) */}
       <div className="absolute inset-0 flex items-center">
         <div className="max-w-[1280px] mx-auto px-4 w-full">
           <div className="glass max-w-xl rounded-2xl p-8 md:p-10 animate-fade-in-up">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-              {slides[current].title}
+              {staticContent.title}
             </h2>
             <p className="text-white/90 text-sm md:text-base mb-6 leading-relaxed">
-              {slides[current].subtitle}
+              {staticContent.subtitle}
             </p>
             <a
               href="#contact"
@@ -82,36 +94,42 @@ export default function Hero() {
       </div>
 
       {/* Navigation Arrows */}
-      <button
-        onClick={prev}
-        aria-label="Previous slide"
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 rounded-full transition-all duration-300 hover:scale-110"
-      >
-        <ChevronLeft size={24} />
-      </button>
-      <button
-        onClick={next}
-        aria-label="Next slide"
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 rounded-full transition-all duration-300 hover:scale-110"
-      >
-        <ChevronRight size={24} />
-      </button>
+      {displayImages.length > 1 && (
+        <>
+          <button
+            onClick={prev}
+            aria-label="Previous slide"
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 rounded-full transition-all duration-300 hover:scale-110"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <button
+            onClick={next}
+            aria-label="Next slide"
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 rounded-full transition-all duration-300 hover:scale-110"
+          >
+            <ChevronRight size={24} />
+          </button>
+        </>
+      )}
 
       {/* Dots */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrent(i)}
-            aria-label={`Go to slide ${i + 1}`}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              i === current
-                ? "bg-accent w-8"
-                : "bg-white/60 hover:bg-white"
-            }`}
-          />
-        ))}
-      </div>
+      {displayImages.length > 1 && (
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+          {displayImages.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                i === current
+                  ? "bg-accent w-8"
+                  : "bg-white/60 hover:bg-white"
+              }`}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Decorative shapes */}
       <div className="absolute top-10 right-10 w-20 h-20 border-4 border-accent/20 rounded-full animate-float hidden lg:block" />

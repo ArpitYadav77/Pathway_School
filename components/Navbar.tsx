@@ -128,10 +128,10 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-3 group shrink-0">
             <div className="relative w-12 h-12 md:w-14 md:h-14 overflow-hidden rounded-full border-2 border-primary/10 group-hover:border-accent/40 transition-colors duration-300">
               <Image
-                src="/images/logo.png"
+                src="/images/small-logo.png"
                 alt="The Seekers International School Logo"
                 fill
-                className="object-cover group-hover:scale-110 transition-transform duration-500"
+                className="object-contain group-hover:scale-110 transition-transform duration-500"
               />
             </div>
             <div className="flex flex-col">

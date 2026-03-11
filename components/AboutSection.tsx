@@ -1,9 +1,12 @@
-"use client";
-
 import Image from "next/image";
 import { BookOpen, Target, ChevronRight } from "lucide-react";
+import { getCategorizedImages } from "@/lib/imageUtils";
 
-export default function AboutSection() {
+export default async function AboutSection() {
+  const { about } = await getCategorizedImages();
+  const image1 = about.length > 0 ? about[0] : "/images/awards/about100.jpg";
+  const image2 = about.length > 1 ? about[1] : (about.length > 0 ? about[0] : "/images/awards/about200.jpg");
+
   return (
     <section id="about" className="py-20 bg-white relative overflow-hidden">
       {/* Decorative elements */}
@@ -27,22 +30,25 @@ export default function AboutSection() {
           <div className="relative animate-slide-in-left">
             <div className="relative w-full max-w-md mx-auto lg:mx-0">
               {/* Main image */}
-              <div className="rounded-2xl overflow-hidden shadow-xl relative z-10">
+              <div className="rounded-2xl overflow-hidden shadow-xl relative z-10 w-full h-[300px] md:h-[350px]">
                 <Image
-                  src="/images/about1.png"
+                  src={image1}
                   alt="Children learning together"
-                  width={500}
-                  height={350}
-                  className="object-cover w-full h-[300px] md:h-[350px]"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 500px"
+                  className="object-cover"
+                  loading="lazy"
                 />
               </div>
               {/* Secondary image - offset */}
               <div className="absolute -bottom-8 -right-8 w-48 h-48 rounded-2xl overflow-hidden shadow-xl border-4 border-white z-20 hidden md:block">
                 <Image
-                  src="/images/about2.png"
+                  src={image2}
                   alt="Children playing outdoors"
                   fill
+                  sizes="192px"
                   className="object-cover"
+                  loading="lazy"
                 />
               </div>
               {/* Decorative circle */}

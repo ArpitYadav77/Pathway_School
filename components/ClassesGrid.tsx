@@ -1,8 +1,7 @@
-"use client";
-
 import Image from "next/image";
+import { getCategorizedImages } from "@/lib/imageUtils";
 
-const classes = [
+const baseClasses = [
   {
     image: "/images/classroom-playgroup.png",
     title: "Playgroup",
@@ -59,7 +58,16 @@ const classes = [
   },
 ];
 
-export default function ClassesGrid() {
+export default async function ClassesGrid() {
+  const { classes } = await getCategorizedImages();
+  
+  const displayClasses = baseClasses.map((cls, i) => {
+    return {
+      ...cls,
+      image: classes?.length > 0 ? classes[i % classes.length] : cls.image,
+    };
+  });
+
   return (
     <section id="academics" className="py-20 bg-bg-light relative overflow-hidden">
       {/* Decorative */}
@@ -84,11 +92,11 @@ export default function ClassesGrid() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {classes.map((cls, i) => (
+          {displayClasses.map((cls, i) => (
             <div
               key={i}
               className="bg-white rounded-2xl overflow-hidden shadow-md card-hover cursor-pointer group animate-fade-in-up"
-              style={{ animationDelay: `${i * 100}ms` }}
+              style={{ animationDelay: `${(i % 3) * 100}ms` }}
             >
               {/* Image */}
               <div className="aspect-[4/3] relative img-zoom">
@@ -97,6 +105,7 @@ export default function ClassesGrid() {
                   alt={cls.title}
                   fill
                   className="object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>

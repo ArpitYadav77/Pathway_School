@@ -69,7 +69,7 @@ export default async function SideNoticeBoard() {
 
       {/* View All Button */}
       <div className="p-4 bg-white border-t border-gray-200 text-center z-10 flex-shrink-0">
-        <Link href="#notices" className="inline-block bg-[#1a5b9c] hover:bg-[#134980] text-white font-bold py-3 px-8 transition-colors w-full uppercase text-sm">
+        <Link href="/notice-board" className="inline-block bg-[#1a5b9c] hover:bg-[#134980] text-white font-bold py-3 px-8 transition-colors w-full uppercase text-sm">
           View All
         </Link>
       </div>
