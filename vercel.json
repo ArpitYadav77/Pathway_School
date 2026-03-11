@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "**/*": {
-      "excludeFiles": "{public/images/**,public/gallery/**}"
-    }
-  }
-}
