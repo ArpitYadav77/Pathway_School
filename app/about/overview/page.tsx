@@ -134,7 +134,7 @@ export default function AboutOverviewPage() {
                   Preschool Programs
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  The preschool programs (Age 1.5Yrs to 5 Yrs) are designed to further children's social and cognitive development. The preschool programs also known as playgroup, nursery school, pre primary school or day care is an educational establishment or learning space offering early childhood education to children before they began compulsory education at primary school.
+                  The preschool programs (Age 1.5Yrs to 5 Yrs) are designed to further children&apos;s social and cognitive development. The preschool programs also known as playgroup, nursery school, pre primary school or day care is an educational establishment or learning space offering early childhood education to children before they began compulsory education at primary school.
                 </p>
               </section>
 

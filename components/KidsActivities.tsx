@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Sparkles, Trophy } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { getCategorizedImages } from "@/lib/imageUtils";
 
 const baseActivities = [
@@ -27,7 +27,6 @@ const baseActivities = [
 
 export default function KidsActivities() {
   const [activities, setActivities] = useState(baseActivities);
-  const [awards, setAwards] = useState<string[]>([]);
 
   useEffect(() => {
     getCategorizedImages().then((res) => {
@@ -37,10 +36,6 @@ export default function KidsActivities() {
           image: res.events[i % res.events.length],
         }));
         setActivities(newActivities);
-      }
-      
-      if (res.awardsFolder && res.awardsFolder.length > 0) {
-        setAwards(res.awardsFolder);
       }
     });
   }, []);
