@@ -119,7 +119,7 @@ export default function Footer() {
                 The Seekers International provide both childcare, early
                 education and primary education. The learning is totally
                 conceptual and practical based. The preschool programs are
-                designed to further children's social and cognitive
+                designed to further children&apos;s social and cognitive
                 development...
               </p>
               <ul className="space-y-2">
@@ -233,9 +233,9 @@ export default function Footer() {
           {/* IB Disclaimer Section */}
           <div className="mt-12 pt-10 border-t border-white/10">
             <p className="text-white/60 text-[12px] leading-relaxed italic max-w-4xl hover:text-white/80 transition-colors">
-              "The Seekers International" is a candidate school* for the Primary
-              Years' Programme. This school is pursuing affiliation as an "IB
-              World School". <br />
+              &quot;The Seekers International&quot; is a candidate school* for the Primary
+              Years&apos; Programme. This school is pursuing affiliation as an &quot;IB
+              World School&quot;. <br />
               *These are the schools that share a common philosophy- A
               Commitment to High Quality, Challenging, International Education
               that The Seekers International believes is important for our

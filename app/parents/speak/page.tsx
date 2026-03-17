@@ -101,13 +101,13 @@ export default function ParentsSpeakPage() {
           <ChevronRight size={14} />
           <span className="text-gray-400">Parents</span>
           <ChevronRight size={14} />
-          <span className="text-secondary font-bold">Parent's Speak</span>
+          <span className="text-secondary font-bold">Parent&apos;s Speak</span>
         </div>
 
         {/* Section Header */}
         <div className="text-center mb-12 px-4">
           <h1 className="text-3xl md:text-4xl font-black text-secondary mb-4 uppercase tracking-wider">
-            Parent's <span className="text-accent text-outline-small">Speak</span>
+            Parent&apos;s <span className="text-accent text-outline-small">Speak</span>
           </h1>
           <div className="w-20 h-1.5 bg-accent mx-auto rounded-full" />
         </div>
@@ -170,9 +170,11 @@ export default function ParentsSpeakPage() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative aspect-auto bg-white p-2 rounded-lg shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-              <img
+              <Image
                 src={`/images/Parents_review/${reviews[selectedIndex]}`}
                 alt="Full Review"
+                width={1200}
+                height={1600}
                 className="modal-image max-w-full max-h-[80vh] object-contain rounded-sm"
               />
               <div className="mt-4 text-center text-gray-400 text-sm font-medium">

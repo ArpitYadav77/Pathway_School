@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { BookOpen, Target, ChevronRight } from "lucide-react";
+import { BookOpen, Target } from "lucide-react";
 import { getCategorizedImages } from "@/lib/imageUtils";
 
 export default async function AboutSection() {

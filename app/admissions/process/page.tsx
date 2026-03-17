@@ -138,7 +138,7 @@ export default function AdmissionProcessPage() {
                       <span className="text-accent font-black text-2xl">1.</span> Philosophy
                     </h3>
                     <p className="text-gray-600 leading-relaxed">
-                      The Little Seekers School aims to provide an inclusive, child centered diverse cultural, linguistic and educational background. In line with NCF, the school prioritizes the child's well-being, curiosity and unique learning needs, fostering holistic development.
+                      The Little Seekers School aims to provide an inclusive, child centered diverse cultural, linguistic and educational background. In line with NCF, the school prioritizes the child&apos;s well-being, curiosity and unique learning needs, fostering holistic development.
                     </p>
                   </div>
 

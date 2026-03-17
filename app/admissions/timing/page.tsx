@@ -161,7 +161,7 @@ export default function SchoolTimingPage() {
                   <div className="space-y-2">
                     <p className="font-bold text-lg">Punctuality Matters</p>
                     <p className="text-white/70 text-sm leading-relaxed">
-                      We encourage parents to drop off their children 10 minutes before the session starts to ensure they don't miss the morning assembly and physical activities.
+                      We encourage parents to drop off their children 10 minutes before the session starts to ensure they don&apos;t miss the morning assembly and physical activities.
                     </p>
                   </div>
                 </div>
