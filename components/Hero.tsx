@@ -48,7 +48,7 @@ export default function Hero() {
   return (
     <section 
       id="home" 
-      className="relative h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden"
+      className="relative h-full w-full overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -68,27 +68,29 @@ export default function Hero() {
             priority={i === 0}
             loading={i === 0 ? "eager" : "lazy"}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
         </div>
       ))}
 
-      {/* Overlay Card (Static across slide transitions) */}
-      <div className="absolute inset-0 flex items-center">
-        <div className="max-w-[1280px] mx-auto px-4 w-full">
-          <div className="glass max-w-xl rounded-2xl p-8 md:p-10 animate-fade-in-up">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+      {/* Overlay Content (Left Aligned) */}
+      <div className="absolute inset-0 flex items-center pt-[80px]">
+        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
+          <div className="glass max-w-xl rounded-[2.5rem] p-10 md:p-14 lg:p-16 animate-fade-in-up shadow-2xl backdrop-blur-md">
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-[1.1] drop-shadow-md">
               {staticContent.title}
             </h2>
-            <p className="text-white/90 text-sm md:text-base mb-6 leading-relaxed">
+            <p className="text-white/95 text-lg md:text-xl mb-10 leading-relaxed font-medium max-w-lg">
               {staticContent.subtitle}
             </p>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-accent/30 hover:scale-105"
-            >
-              Contact Us
-              <ChevronRight size={18} />
-            </a>
+            <div className="flex">
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-3 bg-accent hover:bg-accent-dark text-white font-bold px-12 py-5 rounded-full transition-all duration-300 hover:shadow-xl hover:shadow-accent/40 hover:scale-105"
+              >
+                Contact Us
+                <ChevronRight size={22} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -99,23 +101,23 @@ export default function Hero() {
           <button
             onClick={prev}
             aria-label="Previous slide"
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 rounded-full transition-all duration-300 hover:scale-110"
+            className="absolute left-8 md:left-12 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-md text-white p-3 rounded-full transition-all duration-300 hover:scale-110 z-20"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={32} />
           </button>
           <button
             onClick={next}
             aria-label="Next slide"
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 rounded-full transition-all duration-300 hover:scale-110"
+            className="absolute right-8 md:right-12 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-md text-white p-3 rounded-full transition-all duration-300 hover:scale-110 z-20"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={32} />
           </button>
         </>
       )}
 
       {/* Dots */}
       {displayImages.length > 1 && (
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-20">
           {displayImages.map((_, i) => (
             <button
               key={i}
@@ -123,7 +125,7 @@ export default function Hero() {
               aria-label={`Go to slide ${i + 1}`}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 i === current
-                  ? "bg-accent w-8"
+                  ? "bg-accent w-10"
                   : "bg-white/60 hover:bg-white"
               }`}
             />

@@ -34,6 +34,14 @@ export default function PhotoGallery() {
           coverImage: images.event2[0],
         });
       }
+
+      if (images.awardsFolder && images.awardsFolder.length > 0) {
+        activeEvents.push({
+          id: "awards",
+          title: "Awards",
+          coverImage: images.awardsFolder[0],
+        });
+      }
       
       setEvents(activeEvents);
     });

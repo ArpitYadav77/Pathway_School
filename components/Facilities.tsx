@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Bus, Sun, Utensils, CheckCircle } from "lucide-react";
-import { getCategorizedImages } from "@/lib/imageUtils";
 
 const facilities = [
   {
@@ -33,12 +32,7 @@ const facilities = [
 ];
 
 export default async function Facilities() {
-  const { informational, generalGallery } = await getCategorizedImages();
-  
-  // Use first informational image or fallback to a general image if available
-  const imageSrc = informational.length > 0 
-    ? informational[0] 
-    : (generalGallery.length > 0 ? generalGallery[0] : "/images/kids-stage.png");
+  const imageSrc = "/images/bestfacilities.jpg";
 
   return (
     <section id="facilities" className="py-20 bg-white">
@@ -49,7 +43,7 @@ export default async function Facilities() {
             <div className="rounded-2xl overflow-hidden shadow-xl relative w-full h-[350px] md:h-[450px]">
               <Image
                 src={imageSrc}
-                alt="Kids speaking on stage"
+                alt="School Facilities"
                 fill
                 sizes="(max-width: 768px) 100vw, 600px"
                 className="object-cover"

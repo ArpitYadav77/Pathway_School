@@ -19,11 +19,10 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  { name: "Home", link: "/" },
   {
     name: "About",
     submenu: [
-      { name: "Overview of Our Program", link: "/about/program-overview" },
+      { name: "Overview", link: "/about/overview" },
       { name: "Daycare", link: "/about/daycare" },
       { name: "Books & Learning Resources", link: "/about/books" },
     ],
@@ -33,7 +32,6 @@ const menuItems: MenuItem[] = [
     submenu: [
       { name: "Admission Process", link: "/admissions/process" },
       { name: "School Timing", link: "/admissions/timing" },
-      { name: "Google Map & Phone Contact", link: "/admissions/location" },
     ],
   },
   {
@@ -68,14 +66,8 @@ const menuItems: MenuItem[] = [
   {
     name: "Parents",
     submenu: [
-      { name: "Parent Sessions", link: "/parents/sessions" },
-      {
-        name: "Testimonials",
-        submenu: [
-          { name: "Parents Speak", link: "/parents/speak" },
-          { name: "Parents Video Testimonials", link: "/parents/videos" },
-        ],
-      },
+      { name: "Parent's Speak", link: "/parents/speak" },
+      { name: "Parent Video Reviews", link: "/parents/videos" },
     ],
   },
   {
@@ -145,7 +137,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center justify-end xl:justify-center flex-grow px-2 md:px-4">
+          <div className="hidden lg:flex items-center justify-center flex-grow px-4">
             <ul className="flex items-center gap-1 xl:gap-2">
               {menuItems.map((item) => (
                 <li
@@ -236,6 +228,12 @@ export default function Navbar() {
 
           {/* Action Button / Mobile Toggle */}
           <div className="flex items-center gap-4">
+            <Link
+              href="/erp-login"
+              className="hidden xl:flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 shadow-md hover:shadow-accent/20 shrink-0"
+            >
+              ERP Login
+            </Link>
             <Link
               href="/contact"
               className="hidden xl:flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 shadow-md hover:shadow-primary/20 shrink-0"

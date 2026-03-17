@@ -17,21 +17,22 @@ export default function Home() {
     <main>
       <TopBar />
       <Navbar />
-      <div className="flex flex-col lg:flex-row w-full bg-[#fdf8e6]">
-        <div className="w-full lg:w-[70%]">
+      <div className="flex flex-col lg:flex-row w-full pt-[80px] md:pt-[100px]">
+        <div className="w-full lg:w-[75%] h-[500px] md:h-[600px] lg:h-[700px]">
           <Hero />
         </div>
-        <div className="w-full lg:w-[30%]">
+        <div className="w-full lg:w-[25%] h-[500px] md:h-[600px] lg:h-[700px]">
           <SideNoticeBoard />
         </div>
       </div>
+
       <ActivityGallery />
       <AboutSection />
       <KidsActivities />
+      <PhotoGallery />
       <ClassesGrid />
       <Facilities />
       <EnrollmentCTA />
-      <PhotoGallery />
       <Footer />
       <FloatingButtons />
     </main>

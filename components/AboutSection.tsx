@@ -99,16 +99,7 @@ export default async function AboutSection() {
               </div>
             </div>
 
-            <a
-              href="#about"
-              className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 hover:scale-105 group"
-            >
-              Read More
-              <ChevronRight
-                size={18}
-                className="group-hover:translate-x-1 transition-transform"
-              />
-            </a>
+
           </div>
         </div>
       </div>

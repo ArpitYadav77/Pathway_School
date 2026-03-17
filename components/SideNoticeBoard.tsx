@@ -12,7 +12,7 @@ export default async function SideNoticeBoard() {
   const notices = await getNotices();
 
   return (
-    <div className="h-[500px] md:h-[600px] lg:h-[650px] bg-white flex flex-col border-l border-gray-200">
+    <div className="h-full bg-white flex flex-col">
       {/* Header */}
       <div className="bg-[#1a5b9c] text-white text-center py-4 font-bold text-2xl uppercase tracking-wide relative shadow-md z-10 flex-shrink-0">
         NOTICE BOARD

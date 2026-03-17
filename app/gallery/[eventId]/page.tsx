@@ -18,11 +18,13 @@ export default function EventPage({ params }: { params: Promise<{ eventId: strin
     let eventTitle = "Event Gallery";
     if (eventId === "event1") eventTitle = "Event 1";
     if (eventId === "event2") eventTitle = "Second Event";
+    if (eventId === "awards") eventTitle = "Awards";
     setTitle(eventTitle);
 
     getCategorizedImages().then((res) => {
       if (eventId === "event1") setImages(res.event1 || []);
       else if (eventId === "event2") setImages(res.event2 || []);
+      else if (eventId === "awards") setImages(res.awardsFolder || []);
       else setImages([]);
     });
   }, [eventId]);

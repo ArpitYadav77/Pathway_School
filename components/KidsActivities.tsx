@@ -71,6 +71,42 @@ export default function KidsActivities() {
           <div className="w-20 h-1 bg-accent mx-auto mt-4 rounded-full" />
         </div>
 
+        {/* Floating Kids Visuals Section */}
+        <div className="kids-visuals flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20 my-16 px-4">
+          <div className="kids-img relative w-40 h-40 md:w-52 md:h-52 animate-kids-float">
+            <Image 
+              src="/animation/boy_pencil-removebg-preview.png" 
+              alt="Artistic Boy" 
+              fill 
+              className="object-contain"
+            />
+          </div>
+          <div className="kids-img relative w-40 h-40 md:w-52 md:h-52 animate-kids-float-rotate delay-200">
+            <Image 
+              src="/animation/girl_pencil-removebg-preview.png" 
+              alt="Creative Girl" 
+              fill 
+              className="object-contain"
+            />
+          </div>
+          <div className="kids-img relative w-40 h-40 md:w-52 md:h-52 animate-kids-float-alt delay-500">
+            <Image 
+              src="/animation/image-removebg-preview (2).png" 
+              alt="Innovation" 
+              fill 
+              className="object-contain"
+            />
+          </div>
+          <div className="kids-img relative w-40 h-40 md:w-52 md:h-52 animate-kids-float-rotate delay-300">
+            <Image 
+              src="/animation/image_copy-removebg-preview.png" 
+              alt="Innovation Side" 
+              fill 
+              className="object-contain"
+            />
+          </div>
+        </div>
+
         {/* Auto-Scrolling Events Carousel */}
         <div className="mb-20 overflow-hidden relative group">
           <div className="flex w-max animate-marquee-x gap-6 px-3">
@@ -103,47 +139,7 @@ export default function KidsActivities() {
           </div>
         </div>
 
-        {/* Awards Gallery Section Header */}
-        {awards.length > 0 && (
-          <div className="text-center mb-10 px-4 mt-8">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <Trophy size={20} className="text-accent" />
-              <span className="text-accent font-semibold text-sm uppercase tracking-wider">
-                Our Achievements
-              </span>
-              <Trophy size={20} className="text-accent" />
-            </div>
-            <h2 className="text-3xl md:text-3xl font-bold text-white">
-              Awards Gallery
-            </h2>
-            <div className="w-20 h-1 bg-accent mx-auto mt-4 rounded-full" />
-          </div>
-        )}
 
-        {/* Auto-Scrolling Awards Image Gallery */}
-        {awards.length > 0 && (
-          <div className="overflow-hidden relative group">
-            <div className="flex w-max animate-marquee-x gap-4 px-2" style={{ animationDirection: "reverse", animationDuration: "50s" }}>
-              {/* Duplicate array mapping repeatedly to securely fill out ultrawide screens and loop */}
-              {[...awards, ...awards, ...awards, ...awards].map((imgUrl, i) => (
-                <div
-                  key={i}
-                  className="w-[260px] md:w-[320px] aspect-[4/3] rounded-xl overflow-hidden relative shadow-lg shrink-0 group/award"
-                >
-                  <Image
-                    src={imgUrl}
-                    alt={`Award ${i + 1}`}
-                    fill
-                    sizes="(max-width: 768px) 260px, 320px"
-                    className="object-cover transition-transform duration-700 group-hover/award:scale-110"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-primary/0 group-hover/award:bg-primary/20 transition-colors duration-300" />
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );
