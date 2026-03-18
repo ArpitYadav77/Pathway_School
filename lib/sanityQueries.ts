@@ -9,6 +9,7 @@ export const client = createClient({
 });
 
 const builder = imageUrlBuilder(client);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function urlFor(source: any) {
   return builder.image(source);
 }
@@ -38,7 +39,16 @@ export async function getAnnouncements() {
   return await client.fetch(query);
 }
 
-export async function getHeroBanners() {
+interface HeroBanner {
+  _id: string;
+  title: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  image: any;
+  link?: string;
+  isExternal?: boolean;
+}
+
+export async function getHeroBanners(): Promise<HeroBanner[]> {
   const query = `*[_type == "heroBanner" && isActive == true] | order(order asc) {
     _id,
     title,

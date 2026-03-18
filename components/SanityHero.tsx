@@ -8,6 +8,7 @@ import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 interface HeroBanner {
   _id: string;
   title: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   image: any;
   link?: string;
   isExternal?: boolean;
