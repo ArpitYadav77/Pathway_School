@@ -8,9 +8,10 @@ export const client = createClient({
   useCdn: false,
 });
 
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+
 const builder = imageUrlBuilder(client);
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function urlFor(source: any) {
+export function urlFor(source: SanityImageSource) {
   return builder.image(source);
 }
 
@@ -39,22 +40,31 @@ export async function getAnnouncements() {
   return await client.fetch(query);
 }
 
-interface HeroBanner {
+export interface SanityHeroBanner {
   _id: string;
   title: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  image: any;
+  image: {
+    asset: {
+      url: string;
+    };
+  };
   link?: string;
   isExternal?: boolean;
+  order?: number;
 }
 
-export async function getHeroBanners(): Promise<HeroBanner[]> {
+export async function getHeroBanners(): Promise<SanityHeroBanner[]> {
   const query = `*[_type == "heroBanner" && isActive == true] | order(order asc) {
     _id,
     title,
-    image,
+    image {
+      asset->{
+        url
+      }
+    },
     link,
-    isExternal
+    isExternal,
+    order
   }`;
   return await client.fetch(query);
 }

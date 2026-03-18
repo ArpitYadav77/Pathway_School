@@ -2,20 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { getHeroBanners, urlFor } from "@/lib/sanityQueries";
+import { getHeroBanners, urlFor, SanityHeroBanner } from "@/lib/sanityQueries";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 
-interface HeroBanner {
-  _id: string;
-  title: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  image: any;
-  link?: string;
-  isExternal?: boolean;
-}
-
 export default function SanityHero() {
-  const [banners, setBanners] = useState<HeroBanner[]>([]);
+  const [banners, setBanners] = useState<SanityHeroBanner[]>([]);
   const [current, setCurrent] = useState(0);
   const [loading, setLoading] = useState(true);
 
