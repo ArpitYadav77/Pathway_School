@@ -12,17 +12,22 @@ import Footer from "@/components/Footer";
 import SideNoticeBoard from "@/components/SideNoticeBoard";
 import FloatingButtons from "@/components/FloatingButtons";
 
+import FlashAnnouncement from "@/components/FlashAnnouncement";
+
 export default function Home() {
   return (
     <main>
       <TopBar />
       <Navbar />
-      <div className="flex flex-col lg:flex-row w-full pt-[80px] md:pt-[100px]">
+      <div className="flex flex-col w-full pt-[80px] md:pt-[100px]">
+        <FlashAnnouncement />
+        <div className="flex flex-col lg:flex-row w-full">
         <div className="w-full lg:w-[75%] h-[500px] md:h-[600px] lg:h-[700px]">
           <Hero />
         </div>
         <div className="w-full lg:w-[25%] h-[500px] md:h-[600px] lg:h-[700px]">
           <SideNoticeBoard />
+        </div>
         </div>
       </div>
 

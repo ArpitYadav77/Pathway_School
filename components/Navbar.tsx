@@ -78,7 +78,6 @@ const menuItems: MenuItem[] = [
     ],
   },
   { name: "Contact", link: "/contact" },
-  { name: "Franchise", link: "/franchise" },
 ];
 
 export default function Navbar() {
@@ -117,7 +116,7 @@ export default function Navbar() {
       <div className="w-full px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group shrink-0">
+          <Link href="/" className="flex items-center gap-3 group shrink-0 transition-all duration-300 hover:scale-105">
             <div className="relative w-12 h-12 md:w-14 md:h-14 overflow-hidden rounded-full border-2 border-primary/10 group-hover:border-accent/40 transition-colors duration-300">
               <Image
                 src="/images/small-logo.png"
@@ -135,6 +134,17 @@ export default function Navbar() {
               </span>
             </div>
           </Link>
+
+          
+          {/* ERP Login Button on the Left */}
+          <div className="hidden xl:flex ml-4">
+            <Link
+              href="/erp-login"
+              className="flex items-center gap-2 bg-gradient-to-r from-accent to-accent-dark text-white px-7 py-3 rounded-full font-bold text-sm transition-all duration-300 shadow-md hover:shadow-accent/30 hover:-translate-y-0.5 hover:scale-105 shrink-0"
+            >
+              ERP Login
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center justify-center flex-grow px-4">
@@ -229,14 +239,8 @@ export default function Navbar() {
           {/* Action Button / Mobile Toggle */}
           <div className="flex items-center gap-4">
             <Link
-              href="/erp-login"
-              className="hidden xl:flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 shadow-md hover:shadow-accent/20 shrink-0"
-            >
-              ERP Login
-            </Link>
-            <Link
               href="/contact"
-              className="hidden xl:flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 shadow-md hover:shadow-primary/20 shrink-0"
+              className="hidden xl:flex items-center gap-2 bg-gradient-to-r from-primary to-primary-dark text-white px-8 py-3 rounded-full font-bold text-sm transition-all duration-300 shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 hover:scale-105 shrink-0"
             >
               Apply Now
             </Link>

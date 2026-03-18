@@ -5,11 +5,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { getCategorizedImages } from "@/lib/imageUtils";
 
-const staticContent = {
-  title: "Where Learning is an Adventure",
-  subtitle:
-    "At The Seekers International, we believe every child is unique. Our nurturing environment inspires curiosity, creativity, and a lifelong love for learning.",
-};
+
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
@@ -68,32 +64,11 @@ export default function Hero() {
             priority={i === 0}
             loading={i === 0 ? "eager" : "lazy"}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+
         </div>
       ))}
 
-      {/* Overlay Content (Left Aligned) */}
-      <div className="absolute inset-0 flex items-center pt-[80px]">
-        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
-          <div className="glass max-w-xl rounded-[2.5rem] p-10 md:p-14 lg:p-16 animate-fade-in-up shadow-2xl backdrop-blur-md">
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-[1.1] drop-shadow-md">
-              {staticContent.title}
-            </h2>
-            <p className="text-white/95 text-lg md:text-xl mb-10 leading-relaxed font-medium max-w-lg">
-              {staticContent.subtitle}
-            </p>
-            <div className="flex">
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-3 bg-accent hover:bg-accent-dark text-white font-bold px-12 py-5 rounded-full transition-all duration-300 hover:shadow-xl hover:shadow-accent/40 hover:scale-105"
-              >
-                Contact Us
-                <ChevronRight size={22} />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+
 
       {/* Navigation Arrows */}
       {displayImages.length > 1 && (
