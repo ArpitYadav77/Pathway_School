@@ -3,5 +3,6 @@ import { event } from './event'
 import { gallery } from './gallery'
 import { teacher } from './teacher'
 import { announcement } from './announcement'
+import { heroBanner } from './heroBanner'
 
-export const schemaTypes = [notice, event, gallery, teacher, announcement]
+export const schemaTypes = [notice, event, gallery, teacher, announcement, heroBanner]

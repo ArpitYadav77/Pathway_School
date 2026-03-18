@@ -11,14 +11,26 @@ export const announcement = defineType({
       type: 'string',
     }),
     defineField({
-      name: 'description',
-      title: 'Description',
+      name: 'content',
+      title: 'Content',
       type: 'text',
     }),
     defineField({
-      name: 'publishDate',
-      title: 'Publish Date',
+      name: 'link',
+      title: 'Link (Optional)',
+      type: 'url',
+    }),
+    defineField({
+      name: 'isExternal',
+      title: 'Is External (Opens in new tab)',
+      type: 'boolean',
+      initialValue: true,
+    }),
+    defineField({
+      name: 'date',
+      title: 'Date',
       type: 'datetime',
+      initialValue: (new Date()).toISOString(),
     }),
   ],
 })
