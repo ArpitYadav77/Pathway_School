@@ -22,7 +22,11 @@ export async function getNotices() {
     content,
     date,
     "slug": _id,
-    "description": content
+    "description": content,
+    "fileUrl": file.asset->url,
+    "fileName": file.asset->originalFilename,
+    link,
+    isExternal
   }`;
   
   return await client.fetch(query);
@@ -33,6 +37,8 @@ export async function getAnnouncements() {
     _id,
     title,
     content,
+    "fileUrl": file.asset->url,
+    "fileName": file.asset->originalFilename,
     link,
     isExternal,
     date

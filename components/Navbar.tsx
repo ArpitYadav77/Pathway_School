@@ -108,7 +108,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
           ? "bg-white/95 backdrop-blur-md shadow-lg py-2"
           : "bg-white py-4"
         }`}
@@ -135,19 +135,10 @@ export default function Navbar() {
             </div>
           </Link>
 
-          
-          {/* ERP Login Button on the Left */}
-          <div className="hidden xl:flex ml-4">
-            <Link
-              href="/erp-login"
-              className="flex items-center gap-2 bg-gradient-to-r from-accent to-accent-dark text-white px-7 py-3 rounded-full font-bold text-sm transition-all duration-300 shadow-md hover:shadow-accent/30 hover:-translate-y-0.5 hover:scale-105 shrink-0"
-            >
-              ERP Login
-            </Link>
-          </div>
+
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center justify-center flex-grow px-4">
+          <div className="hidden lg:flex items-center justify-start flex-grow px-4 lg:ml-12 xl:ml-16">
             <ul className="flex items-center gap-1 xl:gap-2">
               {menuItems.map((item) => (
                 <li
@@ -238,6 +229,13 @@ export default function Navbar() {
 
           {/* Action Button / Mobile Toggle */}
           <div className="flex items-center gap-4">
+            <Link
+              href="/erp-login"
+              className="hidden xl:flex items-center gap-2 bg-gradient-to-r from-accent to-accent-dark text-white px-7 py-3 rounded-full font-bold text-sm transition-all duration-300 shadow-md hover:shadow-accent/30 hover:-translate-y-0.5 hover:scale-105 shrink-0"
+            >
+              ERP Login
+            </Link>
+
             <Link
               href="/contact"
               className="hidden xl:flex items-center gap-2 bg-gradient-to-r from-primary to-primary-dark text-white px-8 py-3 rounded-full font-bold text-sm transition-all duration-300 shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 hover:scale-105 shrink-0"

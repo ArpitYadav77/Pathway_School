@@ -6,6 +6,10 @@ interface Notice {
   title: string;
   content: string;
   date?: string;
+  fileUrl?: string;
+  fileName?: string;
+  link?: string;
+  isExternal?: boolean;
 }
 
 export default async function SideNoticeBoard() {
@@ -26,10 +30,33 @@ export default async function SideNoticeBoard() {
             <div key={notice._id} className="border-b border-gray-200 py-4 last:border-b-0">
               <div className="flex items-start gap-2 mb-2">
                 <span className="w-1.5 h-1.5 bg-[#1a5b9c] rounded-full mt-2 shrink-0"></span>
-                <div className="text-[#1a5b9c] hover:underline font-semibold text-sm line-clamp-2">
-                  {notice.title}
-                </div>
+                {notice.fileUrl || notice.link ? (
+                  <a
+                    href={notice.fileUrl || notice.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#1a5b9c] hover:underline font-semibold text-sm line-clamp-2"
+                  >
+                    {notice.title}
+                  </a>
+                ) : (
+                  <div className="text-[#1a5b9c] font-semibold text-sm line-clamp-2">
+                    {notice.title}
+                  </div>
+                )}
               </div>
+              {(notice.fileUrl || notice.link) && (
+                <div className="mb-2 ml-3.5">
+                  <a 
+                    href={notice.fileUrl || notice.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-block bg-accent/10 hover:bg-accent/20 text-accent text-[11px] font-bold px-2 py-1 rounded transition-colors"
+                  >
+                    Download Resource
+                  </a>
+                </div>
+              )}
               <div className="pl-3.5 flex items-center relative w-max">
                 <div className="bg-[#8ab2d3] text-gray-800 text-xs px-3 py-1 font-medium z-10">
                   {notice.date 
@@ -48,10 +75,33 @@ export default async function SideNoticeBoard() {
             <div key={`dup-${notice._id}`} className="border-b border-gray-200 py-4 last:border-b-0">
               <div className="flex items-start gap-2 mb-2">
                 <span className="w-1.5 h-1.5 bg-[#1a5b9c] rounded-full mt-2 shrink-0"></span>
-                <div className="text-[#1a5b9c] hover:underline font-semibold text-sm line-clamp-2">
-                  {notice.title}
-                </div>
+                {notice.fileUrl || notice.link ? (
+                  <a
+                    href={notice.fileUrl || notice.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#1a5b9c] hover:underline font-semibold text-sm line-clamp-2"
+                  >
+                    {notice.title}
+                  </a>
+                ) : (
+                  <div className="text-[#1a5b9c] font-semibold text-sm line-clamp-2">
+                    {notice.title}
+                  </div>
+                )}
               </div>
+              {(notice.fileUrl || notice.link) && (
+                <div className="mb-2 ml-3.5">
+                  <a 
+                    href={notice.fileUrl || notice.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-block bg-accent/10 hover:bg-accent/20 text-accent text-[11px] font-bold px-2 py-1 rounded transition-colors"
+                  >
+                    Download Resource
+                  </a>
+                </div>
+              )}
               <div className="pl-3.5 flex items-center relative w-max">
                 <div className="bg-[#8ab2d3] text-gray-800 text-xs px-3 py-1 font-medium z-10">
                   {notice.date 

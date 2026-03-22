@@ -6,6 +6,10 @@ interface Notice {
   title: string;
   content: string;
   date?: string;
+  fileUrl?: string;
+  fileName?: string;
+  link?: string;
+  isExternal?: boolean;
 }
 
 export default async function NoticeBoard() {
@@ -45,9 +49,22 @@ export default async function NoticeBoard() {
                     </div>
                   )}
 
-                  <p className="text-gray-600 line-clamp-3 text-sm mt-auto">
+                  <p className="text-gray-600 line-clamp-3 text-sm mt-auto mb-4">
                     {notice.content}
                   </p>
+
+                  {(notice.fileUrl || notice.link) && (
+                    <div className="mt-auto">
+                      <a 
+                        href={notice.fileUrl || notice.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="inline-block bg-[#1a5b9c] hover:bg-[#134980] text-white text-sm font-semibold py-2 px-4 rounded-md transition-colors w-full text-center"
+                      >
+                        Download Resource
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

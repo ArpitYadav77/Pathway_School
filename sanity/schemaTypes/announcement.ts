@@ -16,8 +16,16 @@ export const announcement = defineType({
       type: 'text',
     }),
     defineField({
+      name: 'file',
+      title: 'Upload Resource (e.g. PDF, Document)',
+      type: 'file',
+      options: {
+        accept: '.pdf,.doc,.docx',
+      },
+    }),
+    defineField({
       name: 'link',
-      title: 'Link (Optional)',
+      title: 'External Link (Optional)',
       type: 'url',
     }),
     defineField({

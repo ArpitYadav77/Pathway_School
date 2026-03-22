@@ -2,13 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { getAnnouncements } from "@/lib/sanityQueries";
-import { BellRing, ExternalLink, Calendar } from "lucide-react";
+import { BellRing, ExternalLink, Calendar, Download } from "lucide-react";
 
 interface Announcement {
   _id: string;
   title: string;
   content: string;
   link?: string;
+  fileUrl?: string;
+  fileName?: string;
   isExternal?: boolean;
   date: string;
 }
@@ -59,9 +61,9 @@ export default function SanityAnnouncements() {
             {announcements.map((item) => (
               <a
                 key={item._id}
-                href={item.link || "#"}
-                target={item.isExternal ? "_blank" : "_self"}
-                rel={item.isExternal ? "noopener noreferrer" : ""}
+                href={item.fileUrl || item.link || "#"}
+                target={item.fileUrl || item.isExternal ? "_blank" : "_self"}
+                rel={item.fileUrl || item.isExternal ? "noopener noreferrer" : ""}
                 className="flex items-center gap-3 group hover:text-accent transition-colors cursor-pointer"
               >
                 <div className="flex items-center gap-2">
@@ -74,7 +76,12 @@ export default function SanityAnnouncements() {
                   <Calendar size={12} />
                   {new Date(item.date).toLocaleDateString()}
                 </span>
-                {item.link && <ExternalLink size={13} className="opacity-40 group-hover:opacity-100" />}
+                {item.link && !item.fileUrl && <ExternalLink size={13} className="opacity-40 group-hover:opacity-100" />}
+                {item.fileUrl && (
+                  <span className="bg-accent text-white text-[9px] font-bold px-2 py-0.5 rounded leading-none flex items-center gap-1">
+                    DOWNLOAD <Download size={8} />
+                  </span>
+                )}
                 <span className="text-accent/20 mx-2 text-xs opacity-50">•</span>
               </a>
             ))}
