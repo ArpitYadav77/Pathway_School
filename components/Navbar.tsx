@@ -24,7 +24,6 @@ const menuItems: MenuItem[] = [
     submenu: [
       { name: "Overview", link: "/about/overview" },
       { name: "Daycare", link: "/about/daycare" },
-      { name: "Books & Learning Resources", link: "/about/books" },
     ],
   },
   {
@@ -39,30 +38,9 @@ const menuItems: MenuItem[] = [
     submenu: [
       { name: "Curriculum Overview", link: "/academics/curriculum" },
       { name: "Kindergarten Activities", link: "/academics/kindergarten-activities" },
-      { name: "Workshops", link: "/academics/workshops" },
-      { name: "Lab Activities", link: "/academics/lab" },
-      {
-        name: "Beyond Activities",
-        submenu: [
-          { name: "Sports", link: "/academics/beyond/sports" },
-          { name: "Play Activities", link: "/academics/beyond/play" },
-          { name: "Arts & Crafts", link: "/academics/beyond/arts-crafts" },
-          { name: "Summer Camp", link: "/academics/beyond/summer-camp" },
-        ],
-      },
     ],
   },
-  {
-    name: "Facilities",
-    submenu: [
-      { name: "Transport", link: "/facilities/transport" },
-      { name: "Daycare", link: "/facilities/daycare" },
-      { name: "Food & Nutrition", link: "/facilities/food" },
-      { name: "Faculty", link: "/facilities/faculty" },
-      { name: "Temperature Controlled Classrooms", link: "/facilities/temperature-control" },
-      { name: "Smart Classrooms", link: "/facilities/classroom" },
-    ],
-  },
+  { name: "Facilities", link: "/facilities" },
   {
     name: "Parents",
     submenu: [

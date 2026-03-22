@@ -53,7 +53,7 @@ export default function SanityAnnouncements() {
       <div className="w-full px-6 flex items-center justify-center gap-6">
         <div className="flex items-center gap-2 bg-accent/15 px-3 py-1.5 rounded-full shrink-0 shadow-sm">
           <BellRing size={16} className="text-accent animate-wiggle" />
-          <span className="text-accent font-bold text-[10px] uppercase tracking-widest">Notice Board</span>
+          <span className="text-accent font-bold text-[10px] uppercase tracking-widest">Announcement</span>
         </div>
         
         <div className="flex-grow overflow-hidden relative h-6 flex items-center max-w-5xl">
