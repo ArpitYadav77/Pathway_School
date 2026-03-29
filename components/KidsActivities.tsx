@@ -2,26 +2,38 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Sparkles } from "lucide-react";
 import { getCategorizedImages } from "@/lib/imageUtils";
 
 const baseActivities = [
   {
     image: "/images/carnival.png",
-    title: "Carnival 2025",
-    description: "A day full of fun, games, and excitement for all children!",
-  },
-  {
-    image: "/images/friendship-day.png",
     title: "Friendship Day",
-    description:
-      "Celebrating the bonds of friendship with activities and fun.",
+    description: "Celebrating the bonds of friendship with activities and fun.",
+    tag: "Event"
   },
   {
     image: "/images/summer-camp.png",
+    title: "Summer Explorers",
+    description: "An exciting summer program with outdoor learning and play.",
+    tag: "Event"
+  },
+  {
+    image: "/images/carnival.png",
+    title: "Carnival 2025",
+    description: "A day full of fun, games, and excitement for all children!",
+    tag: "Event"
+  },
+  {
+    image: "/images/summer-camp.png",
+    title: "Friendship Day",
+    description: "Celebrating the bonds of friendship with activities and fun.",
+    tag: "Event"
+  },
+  {
+    image: "/images/carnival.png",
     title: "Summer Camp",
-    description:
-      "An exciting summer program with outdoor activities and learning.",
+    description: "An exciting summer program with outdoor activities and fun.",
+    tag: "Event"
   },
 ];
 
@@ -31,8 +43,8 @@ export default function KidsActivities() {
   useEffect(() => {
     getCategorizedImages().then((res) => {
       if (res.events && res.events.length > 0) {
-        const newActivities = baseActivities.map((act, i) => ({
-          ...act,
+        const newActivities = Array(8).fill(null).map((_, i) => ({
+          ...baseActivities[i % baseActivities.length],
           image: res.events[i % res.events.length],
         }));
         setActivities(newActivities);
@@ -41,100 +53,75 @@ export default function KidsActivities() {
   }, []);
 
   return (
-    <section className="py-20 bg-primary relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-        <div className="absolute top-10 left-10 w-20 h-20 border-2 border-white/10 rounded-full" />
-        <div className="absolute bottom-10 right-10 w-32 h-32 border-2 border-white/10 rounded-full" />
-        <div className="absolute top-1/2 left-1/4 w-4 h-4 bg-accent/30 rounded-full animate-bounce-subtle" />
-        <div className="absolute top-20 right-1/3 w-3 h-3 bg-white/20 rounded-full animate-float" />
+    <section className="relative w-full bg-[#1e3a8a] py-16 md:py-20 lg:py-24 overflow-hidden rounded-3xl mt-10">
+      <div className="max-w-7xl mx-auto px-6 text-center mb-12">
+        <p className="text-orange-400 font-extrabold text-xs uppercase tracking-[0.3em] mb-3">
+          ✨ Events & Activities ✨
+        </p>
+        <h2 className="text-3xl md:text-5xl font-black text-white mb-2 tracking-tight">
+          Education and Innovations
+        </h2>
+        <div className="w-24 h-1.5 bg-orange-500 mx-auto rounded-full" />
       </div>
 
-      <div className="max-w-[1920px] mx-auto relative z-10">
-        {/* Events Section Header */}
-        <div className="text-center mb-12 px-4">
-          <div className="flex items-center justify-center gap-2 mb-3">
-            <Sparkles size={20} className="text-accent" />
-            <span className="text-accent font-semibold text-sm uppercase tracking-wider">
-              Events & Activities
-            </span>
-            <Sparkles size={20} className="text-accent" />
+      {/* Playful Mascots - high quality 3D characters */}
+      <div className="flex justify-center gap-6 md:gap-12 lg:gap-20 mb-16 px-6">
+        {[1, 2, 3, 4].map((i) => (
+          <div key={i} className={`relative w-24 h-24 md:w-32 md:h-32 xl:w-40 xl:h-40 transform transition-all duration-700 hover:scale-110 hover:rotate-3 ${i % 2 === 0 ? 'translate-y-6' : '-translate-y-6'}`}>
+            <Image 
+              src={`/animation/mascot${i}.png`} 
+              alt={`Mascot ${i}`} 
+              fill 
+              className="object-contain drop-shadow-2xl" 
+            />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
-            Education and Innovations
-          </h2>
-          <div className="w-20 h-1 bg-accent mx-auto mt-4 rounded-full" />
-        </div>
+        ))}
+      </div>
 
-        {/* Floating Kids Visuals Section */}
-        <div className="kids-visuals flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20 my-16 px-4">
-          <div className="kids-img relative w-40 h-40 md:w-52 md:h-52 animate-kids-float">
-            <Image 
-              src="/animation/boy_pencil-removebg-preview.png" 
-              alt="Artistic Boy" 
-              fill 
-              className="object-contain"
-            />
-          </div>
-          <div className="kids-img relative w-40 h-40 md:w-52 md:h-52 animate-kids-float-rotate delay-200">
-            <Image 
-              src="/animation/girl_pencil-removebg-preview.png" 
-              alt="Creative Girl" 
-              fill 
-              className="object-contain"
-            />
-          </div>
-          <div className="kids-img relative w-40 h-40 md:w-52 md:h-52 animate-kids-float-alt delay-500">
-            <Image 
-              src="/animation/image-removebg-preview (2).png" 
-              alt="Innovation" 
-              fill 
-              className="object-contain"
-            />
-          </div>
-          <div className="kids-img relative w-40 h-40 md:w-52 md:h-52 animate-kids-float-rotate delay-300">
-            <Image 
-              src="/animation/image_copy-removebg-preview.png" 
-              alt="Innovation Side" 
-              fill 
-              className="object-contain"
-            />
-          </div>
-        </div>
-
-        {/* Auto-Scrolling Events Carousel */}
-        <div className="mb-20 overflow-hidden relative group">
-          <div className="flex w-max animate-marquee-x gap-6 px-3">
-            {[...activities, ...activities, ...activities].map((activity, i) => (
-              <div
-                key={i}
-                className="bg-white rounded-2xl overflow-hidden shadow-xl w-[300px] sm:w-[350px] shrink-0 card-hover"
-              >
-                <div className="aspect-[4/3] relative img-zoom">
-                  <Image
-                    src={activity.image}
-                    alt={activity.title}
-                    fill
-                    sizes="(max-width: 640px) 300px, 350px"
-                    className="object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-3 right-3 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
-                    Event
-                  </div>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-bold text-primary text-lg mb-2 truncate">
-                    {activity.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm line-clamp-2">{activity.description}</p>
+      {/* Marquee Section */}
+      <div className="relative w-full flex overflow-hidden">
+        <div className="flex animate-marquee-x gap-4 px-4 whitespace-nowrap overflow-visible py-4">
+          {[...activities, ...activities].map((activity, i) => (
+            <div
+              key={i}
+              className="inline-flex w-[280px] md:w-[320px] flex-col bg-white rounded-3xl overflow-hidden shadow-2xl shrink-0 group hover:-translate-y-2 transition-transform duration-300"
+            >
+              <div className="aspect-[4/3] relative overflow-hidden">
+                <Image
+                  src={activity.image}
+                  alt={activity.title}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute top-4 right-4 bg-orange-500 text-white text-[10px] font-black px-3 py-1 rounded-lg shadow-md uppercase tracking-widest">
+                  Event
                 </div>
               </div>
-            ))}
-          </div>
+              <div className="p-6 md:p-8">
+                <h3 className="font-extrabold text-[#003366] text-lg mb-2">
+                  {activity.title}
+                </h3>
+                <p className="text-gray-500 text-xs md:text-sm leading-relaxed whitespace-normal line-clamp-2">
+                  {activity.description}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
 
-
+        {/* CSS for marquee if not already in globals.css */}
+        <style jsx>{`
+          .animate-marquee-x {
+            animation: marquee 25s linear infinite;
+          }
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee-x:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
       </div>
     </section>
   );

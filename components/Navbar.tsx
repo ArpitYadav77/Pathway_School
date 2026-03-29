@@ -206,27 +206,27 @@ export default function Navbar() {
           </div>
 
           {/* Action Button / Mobile Toggle */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <Link
               href="/erp-login"
-              className="hidden xl:flex items-center gap-2 bg-gradient-to-r from-accent to-accent-dark text-white px-7 py-3 rounded-full font-bold text-sm transition-all duration-300 shadow-md hover:shadow-accent/30 hover:-translate-y-0.5 hover:scale-105 shrink-0"
+              className="flex items-center gap-1.5 bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 sm:px-6 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 shadow-md hover:-translate-y-0.5 shrink-0"
             >
-              ERP Login
+              <span className="hidden xs:inline">ERP</span> Login
             </Link>
 
             <Link
               href="/contact"
-              className="hidden xl:flex items-center gap-2 bg-gradient-to-r from-primary to-primary-dark text-white px-8 py-3 rounded-full font-bold text-sm transition-all duration-300 shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 hover:scale-105 shrink-0"
+              className="hidden sm:flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 shadow-lg hover:-translate-y-0.5 shrink-0"
             >
               Apply Now
             </Link>
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 rounded-xl bg-gray-50 text-secondary hover:text-accent transition-colors"
+              className="lg:hidden p-2 rounded-xl bg-gray-100 text-[#003366] hover:text-orange-600 transition-colors"
               aria-label="Toggle menu"
             >
-              {isOpen ? <X size={26} /> : <Menu size={26} />}
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
@@ -336,11 +336,18 @@ export default function Navbar() {
             </div>
           ))}
 
-          {/* Mobile Apply Button */}
-          <div className="pt-6">
+          {/* Mobile ERP & Apply Buttons */}
+          <div className="grid grid-cols-2 gap-4 pt-6">
+            <Link
+              href="/erp-login"
+              className="flex items-center justify-center bg-orange-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg"
+              onClick={() => setIsOpen(false)}
+            >
+              ERP Login
+            </Link>
             <Link
               href="/contact"
-              className="flex items-center justify-center w-full bg-accent text-white py-4 rounded-2xl font-bold text-lg shadow-lg shadow-accent/20"
+              className="flex items-center justify-center bg-primary text-white py-4 rounded-2xl font-bold text-lg shadow-lg"
               onClick={() => setIsOpen(false)}
             >
               Apply Now

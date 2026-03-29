@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { getHeroBanners, urlFor, SanityHeroBanner } from "@/lib/sanityQueries";
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function SanityHero() {
   const [banners, setBanners] = useState<SanityHeroBanner[]>([]);
@@ -20,7 +21,7 @@ export default function SanityHero() {
     if (banners.length <= 1) return;
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % banners.length);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(interval);
   }, [banners.length]);
 
@@ -28,83 +29,105 @@ export default function SanityHero() {
   const next = () => setCurrent((c) => (c + 1) % banners.length);
 
   if (loading) {
-    return <div className="w-full h-full bg-gray-100 animate-pulse" />;
+    return <div className="w-full h-[40vh] md:h-[60vh] lg:h-[80vh] bg-gray-200 animate-pulse" />;
   }
 
-  // Fallback UI
   if (banners.length === 0) {
     return (
-      <div className="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">
-        No active hero banners found. Add some in Sanity!
+      <div className="w-full h-[40vh] md:h-[60vh] lg:h-[80vh] bg-slate-100 flex items-center justify-center text-slate-400">
+        No active hero banners found.
       </div>
     );
   }
 
   return (
-    <section id="home" className="relative h-full w-full overflow-hidden group">
+    <section id="home" className="relative w-full h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-[75vh] xl:h-[85vh] overflow-hidden group">
       {/* Slides */}
       {banners.map((banner, i) => (
         <div
           key={banner._id}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            i === current ? "opacity-100 z-10" : "opacity-0 z-0"
+          className={`absolute inset-0 transition-all duration-1000 ease-in-out transform ${
+            i === current ? "opacity-100 scale-100 z-10" : "opacity-0 scale-105 z-0"
           }`}
         >
-          {banner.link ? (
-            <a
-              href={banner.link}
-              target={banner.isExternal ? "_blank" : "_self"}
-              rel={banner.isExternal ? "noopener noreferrer" : ""}
-              className="relative block w-full h-full cursor-pointer"
-            >
-              <Image
-                src={urlFor(banner.image).width(1920).height(1080).url()}
-                alt={banner.title}
-                fill
-                className="object-cover transition-transform duration-700 hover:scale-105"
-                priority={i === 0}
-              />
-              <div className="absolute top-4 right-4 bg-black/40 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                <ExternalLink size={20} />
-              </div>
-            </a>
-          ) : (
+          {/* Image with overlay */}
+          <div className="relative w-full h-full">
             <Image
-              src={urlFor(banner.image).width(1920).height(1080).url()}
-              alt={banner.title}
+              src={urlFor(banner.image).width(1920).height(1080).auto('format').url()}
+              alt={banner.title || "School Banner"}
               fill
-              className="object-cover"
+              className="object-cover object-center"
               priority={i === 0}
+              quality={90}
             />
-          )}
+            {/* Darker gradient overlay for readability - now on top of image */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/70 via-black/40 to-transparent z-10" />
+          </div>
+
+          {/* Content Overlay */}
+          <div className="absolute inset-0 flex items-center z-20">
+            <div className="container mx-auto px-6 md:px-12 lg:px-20">
+              <div className="max-w-4xl animate-fade-in-up">
+                <div className="flex items-center gap-3 mb-4">
+                    <span className="w-12 h-[2px] bg-teal-400" />
+                    <span className="text-teal-400 text-xs md:text-sm font-black tracking-widest uppercase">
+                        The Seekers International School
+                    </span>
+                </div>
+                
+                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[1.05] mb-8 drop-shadow-lg">
+                  {banner.title || "Shape Your Future with Excellence"}
+                </h1>
+                
+                <div className="flex flex-wrap gap-4">
+                    {banner.link && (
+                    <Link
+                        href={banner.link}
+                        target={banner.isExternal ? "_blank" : "_self"}
+                        className="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white font-bold px-10 py-4 rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 group/btn"
+                    >
+                        LEARN MORE
+                        <ArrowRight size={22} className="group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                    )}
+                    <button className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 font-bold px-10 py-4 rounded-xl transition-all duration-300">
+                        OUR ADMISSIONS
+                    </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       ))}
 
-      {/* Navigation */}
+      {/* Navigation Controls (Visible on hover) */}
       {banners.length > 1 && (
         <>
           <button
             onClick={prev}
-            className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-md text-white p-2 rounded-full transition-all z-20 group-hover:left-8"
+            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white flex items-center justify-center rounded-full transition-all z-30 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0"
+            aria-label="Previous slide"
           >
-            <ChevronLeft size={30} />
+            <ChevronLeft size={32} />
           </button>
           <button
             onClick={next}
-            className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-md text-white p-2 rounded-full transition-all z-20 group-hover:right-8"
+            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white flex items-center justify-center rounded-full transition-all z-30 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0"
+            aria-label="Next slide"
           >
-            <ChevronRight size={30} />
+            <ChevronRight size={32} />
           </button>
 
-          {/* Indicators */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-30">
+          {/* New Progress Indicators */}
+          <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-3 z-30">
             {banners.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
-                className={`transition-all duration-300 rounded-full ${
-                  i === current ? "bg-accent w-8 h-2.5 shadow-lg shadow-accent/40" : "bg-white/60 w-2.5 h-2.5 hover:bg-white"
+                className={`transition-all duration-500 rounded-full h-1.5 ${
+                  i === current ? "bg-teal-400 w-12" : "bg-white/40 w-6 hover:bg-white/70"
                 }`}
+                aria-label={`Go to slide ${i + 1}`}
               />
             ))}
           </div>

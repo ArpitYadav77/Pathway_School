@@ -16,111 +16,63 @@ export default async function SideNoticeBoard() {
   const notices = await getNotices();
 
   return (
-    <div className="h-full bg-white flex flex-col">
-      {/* Header */}
-      <div className="bg-[#1a5b9c] text-white text-center py-4 font-bold text-2xl uppercase tracking-wide relative shadow-md z-10 flex-shrink-0">
-        NOTICE BOARD
-      </div>
+    <div className="flex flex-col h-[500px]">
+      <div className="flex-1 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-teal-500/20">
+        <div className="flex flex-col gap-4">
+          {notices.map((notice: Notice) => (
+            <div key={notice._id} className="p-4 rounded-lg bg-gray-50 hover:bg-teal-50/50 transition-colors border border-gray-100 group">
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 bg-teal-500 rounded-full mt-1.5 shrink-0 group-hover:scale-125 transition-transform" />
+                <div className="flex-1">
+                  {notice.fileUrl || notice.link ? (
+                    <a
+                      href={notice.fileUrl || notice.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:text-teal-600 font-semibold text-sm line-clamp-2 transition-colors"
+                    >
+                      {notice.title}
+                    </a>
+                  ) : (
+                    <div className="text-primary font-semibold text-sm line-clamp-2">
+                      {notice.title}
+                    </div>
+                  )}
 
-      {/* Scrolling Content */}
-      <div className="flex-1 overflow-hidden relative group bg-white">
-        <div className="absolute top-0 w-full animate-marquee flex flex-col px-6">
-          {/* Main List */}
-          {notices.map((notice: Notice) => (
-            <div key={notice._id} className="border-b border-gray-200 py-4 last:border-b-0">
-              <div className="flex items-start gap-2 mb-2">
-                <span className="w-1.5 h-1.5 bg-[#1a5b9c] rounded-full mt-2 shrink-0"></span>
-                {notice.fileUrl || notice.link ? (
-                  <a
-                    href={notice.fileUrl || notice.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#1a5b9c] hover:underline font-semibold text-sm line-clamp-2"
-                  >
-                    {notice.title}
-                  </a>
-                ) : (
-                  <div className="text-[#1a5b9c] font-semibold text-sm line-clamp-2">
-                    {notice.title}
+                  <div className="mt-2 flex items-center justify-between gap-2">
+                    <span className="text-[11px] font-medium text-gray-500 bg-white px-2 py-0.5 rounded border border-gray-100 italic">
+                      {notice.date 
+                        ? new Date(notice.date).toLocaleDateString("en-GB")
+                        : "New Update"}
+                    </span>
+                    {(notice.fileUrl || notice.link) && (
+                      <a 
+                        href={notice.fileUrl || notice.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="text-teal-600 text-[11px] font-bold hover:underline"
+                      >
+                        View Details →
+                      </a>
+                    )}
                   </div>
-                )}
-              </div>
-              {(notice.fileUrl || notice.link) && (
-                <div className="mb-2 ml-3.5">
-                  <a 
-                    href={notice.fileUrl || notice.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="inline-block bg-accent/10 hover:bg-accent/20 text-accent text-[11px] font-bold px-2 py-1 rounded transition-colors"
-                  >
-                    Download Resource
-                  </a>
                 </div>
-              )}
-              <div className="pl-3.5 flex items-center relative w-max">
-                <div className="bg-[#8ab2d3] text-gray-800 text-xs px-3 py-1 font-medium z-10">
-                  {notice.date 
-                    ? new Date(notice.date).toLocaleDateString("en-GB").replace(/\//g, '-') 
-                    : "New Update"}
-                </div>
-                {/* NEW Badge */}
-                <span className="absolute -right-6 -top-2 bg-red-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm -rotate-6 shadow-sm z-20">
-                  NEW
-                </span>
               </div>
             </div>
           ))}
-          {/* Duplicated List for Infinite Scroll Illusion */}
-          {notices.map((notice: Notice) => (
-            <div key={`dup-${notice._id}`} className="border-b border-gray-200 py-4 last:border-b-0">
-              <div className="flex items-start gap-2 mb-2">
-                <span className="w-1.5 h-1.5 bg-[#1a5b9c] rounded-full mt-2 shrink-0"></span>
-                {notice.fileUrl || notice.link ? (
-                  <a
-                    href={notice.fileUrl || notice.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#1a5b9c] hover:underline font-semibold text-sm line-clamp-2"
-                  >
-                    {notice.title}
-                  </a>
-                ) : (
-                  <div className="text-[#1a5b9c] font-semibold text-sm line-clamp-2">
-                    {notice.title}
-                  </div>
-                )}
-              </div>
-              {(notice.fileUrl || notice.link) && (
-                <div className="mb-2 ml-3.5">
-                  <a 
-                    href={notice.fileUrl || notice.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="inline-block bg-accent/10 hover:bg-accent/20 text-accent text-[11px] font-bold px-2 py-1 rounded transition-colors"
-                  >
-                    Download Resource
-                  </a>
-                </div>
-              )}
-              <div className="pl-3.5 flex items-center relative w-max">
-                <div className="bg-[#8ab2d3] text-gray-800 text-xs px-3 py-1 font-medium z-10">
-                  {notice.date 
-                    ? new Date(notice.date).toLocaleDateString("en-GB").replace(/\//g, '-') 
-                    : "New Update"}
-                </div>
-                <span className="absolute -right-6 -top-2 bg-red-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm -rotate-6 shadow-sm z-20">
-                  NEW
-                </span>
-              </div>
+          
+          {/* Fill extra space if few notices */}
+          {notices.length < 3 && (
+            <div className="p-8 text-center text-gray-400 text-sm border-2 border-dashed border-gray-100 rounded-xl">
+              Stay tuned for more updates!
             </div>
-          ))}
+          )}
         </div>
       </div>
 
-      {/* View All Button */}
-      <div className="p-4 bg-white border-t border-gray-200 text-center z-10 flex-shrink-0">
-        <Link href="/notice-board" className="inline-block bg-[#1a5b9c] hover:bg-[#134980] text-white font-bold py-3 px-8 transition-colors w-full uppercase text-sm">
-          View All
+      <div className="mt-4 pt-4 border-t border-dashed border-gray-200">
+        <Link href="/notice-board" className="flex items-center justify-center bg-primary hover:bg-primary/90 text-white font-bold py-2.5 px-6 rounded-lg transition-all text-sm uppercase tracking-wide shadow-sm hover:shadow-md">
+          View Full Notice Board
         </Link>
       </div>
     </div>

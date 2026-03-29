@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Camera } from "lucide-react";
 import { getCategorizedImages } from "@/lib/imageUtils";
 
 interface EventGallery {
@@ -22,7 +22,7 @@ export default function PhotoGallery() {
       if (images.event1 && images.event1.length > 0) {
         activeEvents.push({
           id: "event1",
-          title: "Event 1",
+          title: "Event Gallery 1",
           coverImage: images.event1[0],
         });
       }
@@ -30,7 +30,7 @@ export default function PhotoGallery() {
       if (images.event2 && images.event2.length > 0) {
         activeEvents.push({
           id: "event2",
-          title: "Second Event",
+          title: "School Events",
           coverImage: images.event2[0],
         });
       }
@@ -38,7 +38,7 @@ export default function PhotoGallery() {
       if (images.awardsFolder && images.awardsFolder.length > 0) {
         activeEvents.push({
           id: "awards",
-          title: "Awards",
+          title: "Our Awards",
           coverImage: images.awardsFolder[0],
         });
       }
@@ -48,67 +48,44 @@ export default function PhotoGallery() {
   }, []);
 
   return (
-    <section id="gallery" className="py-20 bg-bg-light">
-      <div className="max-w-[1280px] mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-14">
-          <span className="text-accent font-semibold text-sm uppercase tracking-wider">
-            Photo Gallery
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mt-2">
-            Capturing Beautiful Moments
-          </h2>
-          <p className="text-gray-500 mt-4 max-w-xl mx-auto">
-            A glimpse into the wonderful experiences and cherished memories
-            created at our school every day.
-          </p>
-          <div className="w-20 h-1 bg-accent mx-auto mt-4 rounded-full" />
+    <div className="w-full">
+      {events.length === 0 ? (
+        <div className="flex items-center justify-center p-12 bg-gray-50 rounded-xl border-2 border-dashed border-gray-100">
+           <p className="text-gray-400 font-medium">Loading collection...</p>
         </div>
-
-        {events.length === 0 ? (
-          <p className="text-center text-gray-500 text-lg">Loading events...</p>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {events.map((event, i) => (
-              <div
-                key={event.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-md flex flex-col group animate-fade-in-up card-hover"
-                style={{ animationDelay: `${i * 150}ms` }}
-              >
-                {/* Event Cover Image */}
-                <div className="relative aspect-[4/3] w-full overflow-hidden">
-                  <Image
-                    src={event.coverImage}
-                    alt={event.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300" />
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+          {events.map((event) => (
+            <Link
+              key={event.id}
+              href={`/gallery/${event.id}`}
+              className="group relative h-[250px] md:h-[300px] xl:h-[350px] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+            >
+              <Image
+                src={event.coverImage}
+                alt={event.title}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
+                className="object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent" />
+              
+              <div className="absolute bottom-0 left-0 right-0 p-5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                <div className="flex items-center gap-2 mb-1 opacity-80">
+                   <Camera size={14} className="text-teal-400" />
+                   <span className="text-[10px] text-white uppercase tracking-widest font-bold">Gallery</span>
                 </div>
-                
-                {/* Event Content */}
-                <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-primary mb-4 truncate text-center">
-                    {event.title}
-                  </h3>
-                  
-                  <div className="mt-auto flex justify-center">
-                    <Link
-                      href={`/gallery/${event.id}`}
-                      className="inline-flex items-center gap-2 bg-[#ffeed1] hover:bg-accent text-accent hover:text-white font-bold px-6 py-2 rounded border border-accent transition-all duration-300 w-full justify-center group/btn"
-                    >
-                      VIEW MORE
-                      <ChevronRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
-                </div>
+                <h3 className="text-lg font-bold text-white mb-2 leading-tight">
+                  {event.title}
+                </h3>
+                <span className="inline-flex items-center text-teal-300 text-xs font-bold gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  EXPLORE <ChevronRight size={14} />
+                </span>
               </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
