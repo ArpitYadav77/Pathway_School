@@ -31,7 +31,7 @@ const quickLinks = [
   "Beyond Academics",
   "Facilities",
   "Parents",
-  "Login",
+  "ERP Login",
 ];
 
 const bestLinks = [
@@ -267,7 +267,7 @@ export default function Footer() {
           {/* Center Logo */}
           <div className="flex items-center gap-3 group/logo cursor-pointer">
             <Image
-              src="/images/small-logo.png"
+              src="/logo/image.png"
               alt="The Seekers logo"
               width={60}
               height={60}

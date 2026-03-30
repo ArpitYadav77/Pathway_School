@@ -97,7 +97,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-3 group shrink-0 transition-all duration-300 hover:scale-105">
             <div className="relative w-12 h-12 md:w-14 md:h-14 overflow-hidden rounded-full border-2 border-primary/10 group-hover:border-accent/40 transition-colors duration-300">
               <Image
-                src="/images/small-logo.png"
+                src="/logo/image.png"
                 alt="The Seekers International School Logo"
                 fill
                 className="object-contain group-hover:scale-110 transition-transform duration-500"
@@ -211,7 +211,7 @@ export default function Navbar() {
               href="/erp-login"
               className="flex items-center gap-1.5 bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 sm:px-6 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 shadow-md hover:-translate-y-0.5 shrink-0"
             >
-              <span className="hidden xs:inline">ERP</span> Login
+              ERP Login
             </Link>
 
             <Link

@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { getHeroBanners, urlFor, SanityHeroBanner } from "@/lib/sanityQueries";
-import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function SanityHero() {
   const [banners, setBanners] = useState<SanityHeroBanner[]>([]);
@@ -60,42 +59,6 @@ export default function SanityHero() {
               priority={i === 0}
               quality={90}
             />
-            {/* Darker gradient overlay for readability - now on top of image */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-black/70 via-black/40 to-transparent z-10" />
-          </div>
-
-          {/* Content Overlay */}
-          <div className="absolute inset-0 flex items-center z-20">
-            <div className="container mx-auto px-6 md:px-12 lg:px-20">
-              <div className="max-w-4xl animate-fade-in-up">
-                <div className="flex items-center gap-3 mb-4">
-                    <span className="w-12 h-[2px] bg-teal-400" />
-                    <span className="text-teal-400 text-xs md:text-sm font-black tracking-widest uppercase">
-                        The Seekers International School
-                    </span>
-                </div>
-                
-                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[1.05] mb-8 drop-shadow-lg">
-                  {banner.title || "Shape Your Future with Excellence"}
-                </h1>
-                
-                <div className="flex flex-wrap gap-4">
-                    {banner.link && (
-                    <Link
-                        href={banner.link}
-                        target={banner.isExternal ? "_blank" : "_self"}
-                        className="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white font-bold px-10 py-4 rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 group/btn"
-                    >
-                        LEARN MORE
-                        <ArrowRight size={22} className="group-hover/btn:translate-x-1 transition-transform" />
-                    </Link>
-                    )}
-                    <button className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 font-bold px-10 py-4 rounded-xl transition-all duration-300">
-                        OUR ADMISSIONS
-                    </button>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       ))}
