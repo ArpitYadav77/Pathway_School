@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { getAnnouncements } from "@/lib/sanityQueries";
 import { BellRing, ExternalLink, Calendar, Download } from "lucide-react";
+import { useDragScroll } from "@/hooks/useDragScroll";
 
 interface Announcement {
   _id: string;
@@ -18,6 +19,12 @@ interface Announcement {
 export default function SanityAnnouncements() {
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
   const [loading, setLoading] = useState(true);
+  const scrollRef = useDragScroll<HTMLDivElement>({
+    autoScroll: true,
+    speed: 1,      // Normal scrolling speed
+    pauseOnHover: true,
+    seamlessLoop: true // We'll duplicate the items to make the loop seamless
+  });
 
   useEffect(() => {
     getAnnouncements()
@@ -56,11 +63,15 @@ export default function SanityAnnouncements() {
           <span className="text-accent font-bold text-[10px] uppercase tracking-widest">Announcement</span>
         </div>
         
-        <div className="flex-grow overflow-hidden relative h-6 flex items-center max-w-5xl">
-          <div className="whitespace-nowrap flex items-center gap-10 text-secondary font-semibold text-sm animate-marquee-x hover:[animation-play-state:paused]">
-            {announcements.map((item) => (
+        <div 
+          ref={scrollRef}
+          className="flex-grow overflow-x-auto overflow-y-hidden relative flex items-center max-w-5xl pb-1"
+          style={{ scrollbarWidth: "thin" }}
+        >
+          <div className="whitespace-nowrap flex items-center gap-10 text-secondary font-semibold text-sm w-max min-w-full px-2">
+            {Array(8).fill(announcements).flat().map((item, index) => (
               <a
-                key={item._id}
+                key={`${item._id}-${index}`}
                 href={item.fileUrl || item.link || "#"}
                 target={item.fileUrl || item.isExternal ? "_blank" : "_self"}
                 rel={item.fileUrl || item.isExternal ? "noopener noreferrer" : ""}

@@ -13,19 +13,26 @@ export default function EventPage({ params }: { params: Promise<{ eventId: strin
   const [images, setImages] = useState<string[]>([]);
   const [title, setTitle] = useState("Loading...");
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let eventTitle = "Event Gallery";
     if (eventId === "event1") eventTitle = "Event 1";
-    if (eventId === "event2") eventTitle = "Second Event";
-    if (eventId === "awards") eventTitle = "Awards";
+    else if (eventId === "event2") eventTitle = "School Events";
+    else if (eventId === "awards") eventTitle = "Awards";
+    else if (eventId === "photos") eventTitle = "Photo Gallery";
+    else if (eventId === "videos") eventTitle = "Video Gallery";
     setTitle(eventTitle);
 
+    setIsLoading(true);
     getCategorizedImages().then((res) => {
       if (eventId === "event1") setImages(res.event1 || []);
       else if (eventId === "event2") setImages(res.event2 || []);
       else if (eventId === "awards") setImages(res.awardsFolder || []);
+      else if (eventId === "photos") setImages(res.generalGallery || []);
       else setImages([]);
+    }).finally(() => {
+      setIsLoading(false);
     });
   }, [eventId]);
 
@@ -54,8 +61,10 @@ export default function EventPage({ params }: { params: Promise<{ eventId: strin
         </div>
 
         {/* Gallery Grid */}
-        {images.length === 0 ? (
+        {isLoading ? (
           <p className="text-center text-gray-500 text-lg mt-20 font-medium">Loading images...</p>
+        ) : images.length === 0 ? (
+          <p className="text-center text-gray-500 text-lg mt-20 font-medium">No images found for this category.</p>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
             {images.map((img, i) => (

@@ -37,9 +37,9 @@ const menuItems: MenuItem[] = [
     name: "Academics",
     submenu: [
       { name: "Curriculum Overview", link: "/academics/curriculum" },
-      { name: "Kindergarten Activities", link: "/academics/kindergarten-activities" },
     ],
   },
+
   { name: "Facilities", link: "/facilities" },
   {
     name: "Parents",
@@ -208,7 +208,7 @@ export default function Navbar() {
           {/* Action Button / Mobile Toggle */}
           <div className="flex items-center gap-2 sm:gap-4">
             <Link
-              href="/erp-login"
+              href="https://pathway-school.vercel.app/studio"
               className="flex items-center gap-1.5 bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 sm:px-6 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 shadow-md hover:-translate-y-0.5 shrink-0"
             >
               ERP Login
@@ -339,7 +339,7 @@ export default function Navbar() {
           {/* Mobile ERP & Apply Buttons */}
           <div className="grid grid-cols-2 gap-4 pt-6">
             <Link
-              href="/erp-login"
+              href="https://pathway-school.vercel.app/studio"
               className="flex items-center justify-center bg-orange-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg"
               onClick={() => setIsOpen(false)}
             >

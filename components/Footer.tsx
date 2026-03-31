@@ -168,7 +168,7 @@ export default function Footer() {
                 {quickLinks.map((link) => (
                   <li key={link}>
                     <Link
-                      href="#"
+                      href={link === "ERP Login" ? "https://pathway-school.vercel.app/studio" : "#"}
                       className="text-white/70 hover:text-accent text-sm transition-all duration-300 flex items-center gap-2 group/link"
                     >
                       <ChevronRight size={14} className="opacity-0 group-hover/link:opacity-100 -translate-x-2 group-hover/link:translate-x-0 transition-all" />
