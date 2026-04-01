@@ -4,7 +4,7 @@ import { getCategorizedImages } from "@/lib/imageUtils";
 
 export default async function AboutSection() {
   const { about } = await getCategorizedImages();
-  const image1 = about.length > 0 ? about[0] : "/images/awards/about100.jpg";
+  const image1 = about.length > 0 ? about[0] : "/gallery/awards/about100.jpg";
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 items-center h-full">

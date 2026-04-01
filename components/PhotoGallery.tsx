@@ -1,91 +1,70 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight, Camera } from "lucide-react";
-import { getCategorizedImages } from "@/lib/imageUtils";
-
-interface EventGallery {
-  id: string;
-  title: string;
-  coverImage: string;
-}
+import galleryData from "@/lib/galleryData.json";
 
 export default function PhotoGallery() {
-  const [events, setEvents] = useState<EventGallery[]>([]);
-
-  useEffect(() => {
-    getCategorizedImages().then((images) => {
-      const activeEvents: EventGallery[] = [];
-      
-      if (images.event1 && images.event1.length > 0) {
-        activeEvents.push({
-          id: "event1",
-          title: "Event Gallery 1",
-          coverImage: images.event1[0],
-        });
-      }
-      
-      if (images.event2 && images.event2.length > 0) {
-        activeEvents.push({
-          id: "event2",
-          title: "School Events",
-          coverImage: images.event2[0],
-        });
-      }
-
-      if (images.awardsFolder && images.awardsFolder.length > 0) {
-        activeEvents.push({
-          id: "awards",
-          title: "Our Awards",
-          coverImage: images.awardsFolder[0],
-        });
-      }
-      
-      setEvents(activeEvents);
-    });
-  }, []);
-
   return (
     <div className="w-full">
-      {events.length === 0 ? (
-        <div className="flex items-center justify-center p-12 bg-gray-50 rounded-xl border-2 border-dashed border-gray-100">
-           <p className="text-gray-400 font-medium">Loading collection...</p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-          {events.map((event) => (
-            <Link
-              key={event.id}
-              href={`/gallery/${event.id}`}
-              className="group relative h-[250px] md:h-[300px] xl:h-[350px] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
-            >
-              <Image
-                src={event.coverImage}
-                alt={event.title}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
-                className="object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent" />
-              
-              <div className="absolute bottom-0 left-0 right-0 p-5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                <div className="flex items-center gap-2 mb-1 opacity-80">
-                   <Camera size={14} className="text-teal-400" />
-                   <span className="text-[10px] text-white uppercase tracking-widest font-bold">Gallery</span>
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2 leading-tight">
-                  {event.title}
-                </h3>
-                <span className="inline-flex items-center text-teal-300 text-xs font-bold gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  EXPLORE <ChevronRight size={14} />
-                </span>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        {galleryData.map((item) => (
+          <Link
+            key={item.folderName}
+            href={`/gallery/${encodeURIComponent(item.folderName)}`}
+            className="group relative aspect-[4/5] sm:aspect-[1/1.2] rounded-[2.5rem] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-700 hover:-translate-y-2"
+          >
+            {/* Background Image with Zoom */}
+            <Image
+              src={item.imagePath}
+              alt={item.title}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover group-hover:scale-110 transition-transform duration-1000"
+              priority={false}
+            />
+            
+            {/* Soft Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#003366]/90 via-[#003366]/20 to-transparent group-hover:via-[#003366]/40 transition-all duration-500" />
+            
+            {/* Content Container */}
+            <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+              {/* Gallery Label */}
+              <div className="flex items-center gap-2 mb-3">
+                 <div className="bg-accent/20 p-1.5 rounded-lg border border-accent/30 backdrop-blur-sm">
+                    <Camera size={14} className="text-secondary" />
+                 </div>
+                 <span className="text-[10px] text-white/90 uppercase tracking-[0.3em] font-black">Gallery</span>
               </div>
-            </Link>
-          ))}
-        </div>
-      )}
+              
+              {/* Reference Style Title */}
+              <h3 className="text-2xl md:text-3xl font-black text-white leading-tight mb-4 tracking-tight drop-shadow-lg">
+                {item.title}
+              </h3>
+              
+              {/* Explore Link */}
+              <div className="flex items-center gap-2 text-accent text-xs font-black uppercase tracking-[0.2em] transition-all duration-500 group-hover:gap-3">
+                Explore <ChevronRight size={16} strokeWidth={3} />
+              </div>
+            </div>
+
+            {/* Glassmorphic border effect on hover */}
+            <div className="absolute inset-0 border-0 group-hover:border-[12px] border-white/5 transition-all duration-500 rounded-[2.5rem]" />
+          </Link>
+        ))}
+      </div>
+      
+      {/* Footer link for all photos */}
+      <div className="mt-16 text-center">
+         <Link 
+            href="/gallery/photos" 
+            className="inline-flex items-center gap-3 text-[#003366] hover:text-accent font-black uppercase text-xs tracking-[0.2em] transition-all duration-300 bg-white px-8 py-4 rounded-full shadow-sm hover:shadow-md border border-gray-100"
+         >
+           Browse All Categories 
+           <ChevronRight size={16} strokeWidth={3} className="transition-transform group-hover:translate-x-1" />
+         </Link>
+      </div>
     </div>
   );
 }
