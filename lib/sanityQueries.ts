@@ -74,8 +74,15 @@ export async function getHeroBanners(): Promise<SanityHeroBanner[]> {
   }`;
   return await client.fetch(query);
 }
+export interface SanityGallery {
+  _id: string;
+  title: string;
+  slug: string;
+  images: string[];
+  coverImage: string;
+}
 
-export async function getGalleries() {
+export async function getGalleries(): Promise<SanityGallery[]> {
   const query = `*[_type == "gallery"] | order(_createdAt desc) {
     _id,
     title,
@@ -86,11 +93,13 @@ export async function getGalleries() {
   return await client.fetch(query);
 }
 
-export async function getGalleryBySlug(slug: string) {
+export async function getGalleryBySlug(slug: string): Promise<SanityGallery | null> {
   const query = `*[_type == "gallery" && slug.current == $slug][0] {
     _id,
     title,
-    "images": images[].asset->url
+    "images": images[].asset->url,
+    "slug": slug.current,
+    "coverImage": images[0].asset->url
   }`;
   return await client.fetch(query, { slug });
 }

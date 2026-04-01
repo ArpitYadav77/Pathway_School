@@ -4,15 +4,15 @@ import { useEffect, useState, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, X, Loader2, ChevronRight, ImageOff, Camera } from "lucide-react";
-import { getGalleryBySlug, getGalleries } from "@/lib/sanityQueries";
-import { getGalleryImages, getAllPictures, getLocalGalleryFolders } from "@/lib/imageUtils";
+import { getGalleryBySlug, getGalleries, SanityGallery } from "@/lib/sanityQueries";
+import { getGalleryImages, getLocalGalleryFolders } from "@/lib/imageUtils";
 
 export default function EventPage({ params }: { params: Promise<{ eventId: string }> }) {
   const unwrappedParams = use(params);
   const eventId = decodeURIComponent(unwrappedParams.eventId);
   
   const [images, setImages] = useState<string[]>([]);
-  const [folders, setFolders] = useState<any[]>([]);
+  const [folders, setFolders] = useState<SanityGallery[]>([]);
   const [title, setTitle] = useState("Loading...");
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -62,7 +62,7 @@ export default function EventPage({ params }: { params: Promise<{ eventId: strin
           } else {
              // 3. Last fallback: Check if slug exists in static Sanity galleries
             getGalleries().then(allGalleries => {
-              const matched = allGalleries?.find((g: any) => g.slug === eventId || g._id === eventId);
+              const matched = allGalleries?.find((g: SanityGallery) => g.slug === eventId || g._id === eventId);
               if (matched && matched.images?.length > 0) {
                  setImages(matched.images);
                  setTitle(matched.title);

@@ -1,6 +1,5 @@
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
-import ActivityGallery from "@/components/ActivityGallery";
 import AboutSection from "@/components/AboutSection";
 import KidsActivities from "@/components/KidsActivities";
 import ClassesGrid from "@/components/ClassesGrid";
@@ -15,7 +14,7 @@ import SanityHero from "@/components/SanityHero";
 
 import Card from "@/components/Card";
 import GridLayout from "@/components/GridLayout";
-import { Info, Bell, Camera, Sparkles, GraduationCap, MapPin, School } from "lucide-react";
+import { Info, Bell, Camera, MapPin, School } from "lucide-react";
 
 export default function Home() {
   return (
