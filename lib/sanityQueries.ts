@@ -78,7 +78,7 @@ export interface SanityGallery {
   _id: string;
   title: string;
   slug: string;
-  images: string[];
+  images?: string[];
   coverImage: string;
 }
 

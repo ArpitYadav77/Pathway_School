@@ -48,8 +48,8 @@ export default function EventPage({ params }: { params: Promise<{ eventId: strin
     setViewMode("images");
     // 1. Try to find in Sanity first
     getGalleryBySlug(eventId).then(gallery => {
-      if (gallery && gallery.images?.length > 0) {
-        setImages(gallery.images);
+      if (gallery && (gallery.images?.length ?? 0) > 0) {
+        setImages(gallery.images ?? []);
         setTitle(gallery.title);
         setIsLoading(false);
       } else {
@@ -63,8 +63,8 @@ export default function EventPage({ params }: { params: Promise<{ eventId: strin
              // 3. Last fallback: Check if slug exists in static Sanity galleries
             getGalleries().then(allGalleries => {
               const matched = allGalleries?.find((g: SanityGallery) => g.slug === eventId || g._id === eventId);
-              if (matched && matched.images?.length > 0) {
-                 setImages(matched.images);
+              if (matched && (matched.images?.length ?? 0) > 0) {
+                 setImages(matched.images ?? []);
                  setTitle(matched.title);
               } else {
                  setTitle("Gallery Not Found");
