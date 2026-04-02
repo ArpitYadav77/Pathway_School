@@ -6,11 +6,32 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.join(__dirname, "..");
 
+const getFilesRecursive = (dir, baseDir = dir) => {
+  let results = [];
+  try {
+    const list = fs.readdirSync(dir);
+    list.forEach(file => {
+      const filePath = path.join(dir, file);
+      const stat = fs.statSync(filePath);
+      if (stat && stat.isDirectory()) {
+        results = results.concat(getFilesRecursive(filePath, baseDir));
+      } else if (/\.(jpg|jpeg|png|gif|webp|JPG|PNG)$/i.test(file)) {
+        // Create a relative path from the baseDir (usually public/images)
+        const relPath = path.relative(baseDir, filePath).replace(/\\/g, '/');
+        results.push(relPath);
+      }
+    });
+  } catch (e) {
+    console.warn(`Warning reading directory ${dir}:`, e.message);
+  }
+  return results.sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
+};
+
 const getFiles = (dir) => {
   try {
     const files = fs.readdirSync(dir);
     return files
-      .filter(f => /\.(jpg|jpeg|png|gif|webp)$/i.test(f))
+      .filter(f => /\.(jpg|jpeg|png|gif|webp|JPG|PNG)$/i.test(f))
       .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
   } catch (e) {
     return [];
@@ -18,19 +39,26 @@ const getFiles = (dir) => {
 };
 
 async function generate() {
-  const imagesDir = path.join(rootDir, "public", "images");
-  const event1Dir = path.join(rootDir, "public", "gallery", "event1");
-  const event2Dir = path.join(rootDir, "public", "gallery", "event2");
+  const publicDir = path.join(rootDir, "public");
+  const imagesDir = path.join(publicDir, "images");
+  const galleryDir = path.join(imagesDir, "gallery");
+  const picturesDir = path.join(publicDir, "Pictures");
 
-  const imagesFiles = getFiles(imagesDir);
-  const event1Files = getFiles(event1Dir).map(f => `/gallery/event1/${f}`);
-  const event2Files = getFiles(event2Dir).map(f => `/gallery/event2/${f}`);
+  // Get all images from public/images recursively
+  const imagesFiles = getFilesRecursive(imagesDir);
   
-  const heroDir = path.join(rootDir, "public", "images", "Hero");
+  // Specific gallery event folders
+  const event1Files = getFiles(path.join(galleryDir, "event1")).map(f => `/images/gallery/event1/${f}`);
+  const event2Files = getFiles(path.join(galleryDir, "event2")).map(f => `/images/gallery/event2/${f}`);
+  
+  const heroDir = path.join(imagesDir, "Hero");
   const heroFolderFiles = getFiles(heroDir).map(f => `/images/Hero/${f}`);
   
-  const awardsDir = path.join(rootDir, "public", "images", "awards");
-  const awardsFolderFiles = getFiles(awardsDir).map(f => `/images/awards/${f}`);
+  const awardsDir = path.join(galleryDir, "awards"); 
+  const awardsFolderFiles = getFiles(awardsDir).map(f => `/images/gallery/awards/${f}`);
+
+  const buildingDir = path.join(galleryDir, "building");
+  const buildingFiles = getFiles(buildingDir).map(f => `/images/gallery/building/${f}`);
 
   const categorized = {
     about: [],
@@ -42,11 +70,11 @@ async function generate() {
     generalGallery: [],
   };
 
-  const activityKeywords = ["activities", "crafts", "annualday", "birthdaycelebrations"];
-  const classKeywords = ["class1", "class2", "class3", "class4", "class5", "class6", "class7", "class-", "lkg", "ukg"];
+  const activityKeywords = ["activities", "crafts", "annualday", "birthdaycelebrations", "fun"];
+  const classKeywords = ["class", "playgroup", "nursery", "kindergarten", "lkg", "ukg", "academic"];
   const eventKeywords = ["basant", "festivals", "celebrations", "lohri", "baisakhi", "carnival", "picnic", "summercamp", "fancydress", "friendship-day"];
-  const informationalKeywords = ["controls", "infographic", "facilities", "dentalcheckup"];
-  const heroKeywords = ["background", "banner", "hero", "backdrops", "kids-stage"];
+  const informationalKeywords = ["controls", "infographic", "facilities", "dentalcheckup", "bestfacilities"];
+  const heroKeywords = ["background", "banner", "hero", "backdrops", "kids-stage", "dsc_", "img_"];
 
   imagesFiles.forEach((f) => {
     const p = `/images/${f}`;
@@ -75,11 +103,12 @@ async function generate() {
     event2: event2Files,
     heroFolder: heroFolderFiles,
     awardsFolder: awardsFolderFiles,
+    building: buildingFiles,
   };
 
   const outputPath = path.join(rootDir, "lib", "imageData.json");
   fs.writeFileSync(outputPath, JSON.stringify(finalData, null, 2));
-  console.log("Successfully generated lib/imageData.json");
+  console.log(`Successfully generated lib/imageData.json with ${imagesFiles.length} images.`);
 }
 
 generate();
