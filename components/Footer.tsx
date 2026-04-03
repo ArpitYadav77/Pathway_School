@@ -17,12 +17,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 const usefulLinks = [
-  "Home",
-  "About us",
-  "Classes",
-  "Admissions",
-  "Our Gallery",
-  "Contact us",
+  { name: "Home", link: "/" },
+  { name: "About us", link: "/about/overview" },
+  { name: "Classes", link: "/academics/programmes" },
+  { name: "Photo Gallery", link: "/gallery/photos" },
+  { name: "Video Gallery", link: "/gallery/videos" },
+  { name: "Contact us", link: "/contact" },
 ];
 
 const quickLinks = [
@@ -144,14 +144,14 @@ export default function Footer() {
                 <span className="absolute bottom-[-4px] left-0 w-12 h-[2px] bg-accent transition-all duration-300 group-hover/title:w-full" />
               </h3>
               <ul className="space-y-4">
-                {usefulLinks.map((link) => (
-                  <li key={link}>
+                {usefulLinks.map((item) => (
+                  <li key={item.name}>
                     <Link
-                      href="#"
+                      href={item.link}
                       className="text-white/70 hover:text-accent text-sm transition-all duration-300 flex items-center gap-2 group/link"
                     >
                       <ChevronRight size={14} className="opacity-0 group-hover/link:opacity-100 -translate-x-2 group-hover/link:translate-x-0 transition-all" />
-                      {link}
+                      {item.name}
                     </Link>
                   </li>
                 ))}

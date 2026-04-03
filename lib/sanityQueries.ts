@@ -103,3 +103,20 @@ export async function getGalleryBySlug(slug: string): Promise<SanityGallery | nu
   }`;
   return await client.fetch(query, { slug });
 }
+
+export interface SanityVideo {
+  _id: string;
+  title: string;
+  url: string;
+  order?: number;
+}
+
+export async function getVideos(): Promise<SanityVideo[]> {
+  const query = `*[_type == "video"] | order(order asc, _createdAt desc) {
+    _id,
+    title,
+    url,
+    order
+  }`;
+  return await client.fetch(query);
+}
