@@ -35,9 +35,9 @@ export default function TopBar() {
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6">
           <div className="flex items-center gap-2">
             <Phone size={14} />
-            <span>+91 62809 94044</span>
+            <a href="tel:+916280994044" className="hover:text-accent transition-colors">+91 62809 94044</a>
             <span className="hidden sm:inline">|</span>
-            <span>+91 62809 95744</span>
+            <a href="tel:+916280995744" className="hover:text-accent transition-colors">+91 62809 95744</a>
           </div>
           <div className="flex items-center gap-2">
             <Mail size={14} />

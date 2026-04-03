@@ -50,8 +50,8 @@ export default function ContactPage() {
                         </div>
                         <h3 className="font-black text-secondary uppercase text-xs tracking-widest mb-2">Call Us</h3>
                         <p className="text-primary font-bold text-lg leading-tight">
-                           +91 62809 94044<br/>
-                           +91 62809 95744
+                           <a href="tel:+916280994044" className="hover:text-accent transition-colors">+91 62809 94044</a><br/>
+                           <a href="tel:+916280995744" className="hover:text-accent transition-colors">+91 62809 95744</a>
                         </p>
                      </div>
                      <div className="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 hover:shadow-xl transition-all group">
