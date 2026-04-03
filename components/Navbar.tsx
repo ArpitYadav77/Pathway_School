@@ -47,7 +47,6 @@ const menuItems: MenuItem[] = [
     name: "Parents",
     submenu: [
       { name: "Parent's Speak", link: "/parents/speak" },
-      { name: "Parent Video Reviews", link: "/parents/videos" },
     ],
   },
   {
