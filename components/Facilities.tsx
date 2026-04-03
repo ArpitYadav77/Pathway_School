@@ -26,7 +26,7 @@ const facilities = [
 ];
 
 export default async function Facilities() {
-  const imageSrc = "/images/building/2520186158ADSC_0002.jpg";
+  const imageSrc = "/images/Fun/school_building_main.png";
 
   return (
     <div className="flex flex-col gap-6">
