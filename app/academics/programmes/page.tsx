@@ -93,6 +93,13 @@ const programmes = [
     description: "At The Little Seekers School, Class 7 students are part of the “Homi Jehangir Bhabha” class. His legacy of scientific inquiry and leadership serves as an inspiration. The curriculum covers essential subjects with a strong emphasis on experimental learning and problem-solving. Students engage in language development through Hindi, Punjabi, and French. Abacus training is continued. Public speaking, drama, and presentations are integral, helping students build stage confidence. A standout event is the Science Exhibition, where students showcase their scientific knowledge through projects. The class is designed to cultivate the spirit of discovery, leadership, and intellectual curiosity.",
     color: "bg-rose-600",
     image: "/images/classroom-older.png"
+  },
+  {
+    title: "Class 8 (The Tessys)",
+    age: "Age - 13 years",
+    description: "Tessy Thomas is a renowned Indian aerospace engineer and scientist popularly known as the “Missile Woman of India.” She works with the Defence Research and Development Organisation (DRDO) and has played a major role in the development of India’s long-range ballistic missiles. Tessy Thomas served as the Project Director for the Agni-IV missile and contributed significantly to the development of the Agni-V missile, which strengthened India’s defense capabilities. She worked closely with former Indian President and scientist A. P. J. Abdul Kalam. Her achievements and leadership in defense research are a major inspiration for women pursuing careers in science and engineering.",
+    color: "bg-emerald-600",
+    image: "/images/classroom-older.png"
   }
 ];
 
