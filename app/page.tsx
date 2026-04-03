@@ -50,7 +50,7 @@ export default function Home() {
           </Card>
         </div>
         <div className="lg:col-span-2">
-          <Card title="Our Global Vision" icon={<School size={24} />}>
+          <Card title="Upcoming Campus" icon={<School size={24} />}>
             <div className="relative w-full aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-white/50 group bg-gray-50">
                <Image
                  src="/Pictures/image.png"
