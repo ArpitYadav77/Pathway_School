@@ -148,29 +148,21 @@ export default function ProgrammesPage() {
                     {[...programmes, ...programmes].map((prog, i) => (
                         <div
                             key={i}
-                            className="inline-flex w-[320px] md:w-[400px] flex-col bg-white rounded-[3rem] overflow-hidden shadow-2xl shrink-0 group hover:-translate-y-4 transition-all duration-500 border border-white/20"
+                            className="inline-flex w-[320px] md:w-[400px] flex-col bg-white rounded-[3rem] overflow-hidden shadow-2xl shrink-0 group hover:-translate-y-4 transition-all duration-500 border border-white/20 p-8 md:p-10"
                         >
-                            <div className="aspect-[16/10] relative overflow-hidden">
-                                <Image
-                                    src={prog.image}
-                                    alt={prog.title}
-                                    fill
-                                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                                />
-                                <div className={`absolute top-6 right-6 px-4 py-1.5 rounded-xl ${prog.color} text-white text-[10px] font-black shadow-lg uppercase tracking-widest`}>
-                                    {prog.age}
-                                </div>
-                            </div>
-                            <div className="p-8 md:p-10 flex flex-col flex-grow">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className={`w-10 h-10 rounded-xl ${prog.color}/10 flex items-center justify-center text-${prog.color.split('-')[1]}-500`}>
-                                        <GraduationCap size={20} />
+                            <div className="flex flex-col flex-grow">
+                                <div className="flex items-center justify-between mb-6">
+                                    <div className={`w-12 h-12 rounded-2xl ${prog.color}/10 flex items-center justify-center text-${prog.color.split('-')[1]}-500 shadow-inner`}>
+                                        <GraduationCap size={24} />
                                     </div>
-                                    <h3 className="font-black text-[#003366] text-xl md:text-2xl uppercase italic tracking-tighter leading-none whitespace-normal">
-                                        {prog.title}
-                                    </h3>
+                                    <div className={`px-4 py-1.5 rounded-xl ${prog.color} text-white text-[10px] font-black shadow-lg uppercase tracking-widest`}>
+                                        {prog.age}
+                                    </div>
                                 </div>
-                                <p className="text-gray-500 text-sm leading-relaxed whitespace-normal line-clamp-6 font-medium">
+                                <h3 className="font-black text-[#003366] text-xl md:text-2xl uppercase italic tracking-tighter leading-none whitespace-normal mb-4">
+                                    {prog.title}
+                                </h3>
+                                <p className="text-gray-500 text-sm leading-relaxed whitespace-normal line-clamp-12 font-medium">
                                     {prog.description}
                                 </p>
                             </div>
