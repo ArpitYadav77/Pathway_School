@@ -1,9 +1,11 @@
 import { defineType, defineField } from 'sanity'
+import { StudioLogo } from '../Logo'
 
 export const video = defineType({
   name: 'video',
   title: 'Video Gallery',
   type: 'document',
+  icon: StudioLogo,
   fields: [
     defineField({
       name: 'title',
