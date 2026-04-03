@@ -35,13 +35,13 @@ export default function TopBar() {
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6">
           <div className="flex items-center gap-2">
             <Phone size={14} />
-            <span>+91 98765 43210</span>
+            <span>+91 62809 94044</span>
             <span className="hidden sm:inline">|</span>
-            <span>+91 98765 43211</span>
+            <span>+91 62809 95744</span>
           </div>
           <div className="flex items-center gap-2">
             <Mail size={14} />
-            <span>info@seekersinternational.edu</span>
+            <a href="mailto:theseekersinternational2025@gmail.com">theseekersinternational2025@gmail.com</a>
           </div>
         </div>
       </div>

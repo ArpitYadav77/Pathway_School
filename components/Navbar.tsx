@@ -357,11 +357,11 @@ export default function Navbar() {
 
           {/* Mobile Contacts */}
           <div className="grid grid-cols-2 gap-4 pt-4">
-            <a href="tel:+1234567890" className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-gray-50 text-gray-600">
+            <a href="tel:+916280995744" className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-gray-50 text-gray-600">
               <Phone size={20} className="text-primary" />
               <span className="text-xs font-bold uppercase">Call Us</span>
             </a>
-            <a href="mailto:info@theseekersinternational.com" className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-gray-50 text-gray-600">
+            <a href="mailto:theseekersinternational2025@gmail.com" className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-gray-50 text-gray-600">
               <Mail size={20} className="text-primary" />
               <span className="text-xs font-bold uppercase">Email</span>
             </a>

@@ -49,14 +49,19 @@ export default function ContactPage() {
                            <Phone size={24} />
                         </div>
                         <h3 className="font-black text-secondary uppercase text-xs tracking-widest mb-2">Call Us</h3>
-                        <p className="text-primary font-bold text-lg">+91 62809 95744</p>
+                        <p className="text-primary font-bold text-lg leading-tight">
+                           +91 62809 94044<br/>
+                           +91 62809 95744
+                        </p>
                      </div>
                      <div className="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 hover:shadow-xl transition-all group">
                         <div className="w-12 h-12 bg-accent rounded-2xl flex items-center justify-center text-white mb-6 group-hover:rotate-12 transition-transform">
                            <Mail size={24} />
                         </div>
                         <h3 className="font-black text-secondary uppercase text-xs tracking-widest mb-2">Email Us</h3>
-                        <p className="text-primary font-bold text-sm md:text-base break-words">thelittleseekers2018@gmail.com</p>
+                        <p className="text-primary font-bold text-sm md:text-base break-all">
+                           theseekersinternational2025@gmail.com
+                        </p>
                      </div>
                   </div>
                </div>

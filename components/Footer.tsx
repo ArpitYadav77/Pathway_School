@@ -223,7 +223,7 @@ export default function Footer() {
                     <Mail size={18} className="text-accent" />
                   </div>
                   <span className="text-white/80 text-sm break-all group-hover:text-white transition-colors cursor-pointer">
-                    thelittleseekers2018@gmail.com
+                    theseekersinternational2025@gmail.com
                   </span>
                 </div>
               </div>
@@ -264,7 +264,6 @@ export default function Footer() {
             Copyright © The Seekers International
           </div>
 
-          {/* Center Logo */}
           <div className="flex items-center gap-3 group/logo cursor-pointer">
             <Image
               src="/logo/image.png"
