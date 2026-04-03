@@ -64,13 +64,18 @@ export default function KidsActivities() {
         <div className="w-24 h-1.5 bg-orange-500 mx-auto rounded-full" />
       </div>
 
-      {/* Playful Mascots - high quality 3D characters */}
+      {/* Playful Animations - specific removebg-preview characters */}
       <div className="flex justify-center gap-6 md:gap-12 lg:gap-20 mb-16 px-6">
-        {[1, 2, 3, 4].map((i) => (
+        {[
+          "boy_pencil-removebg-preview.png",
+          "girl_pencil-removebg-preview.png",
+          "image_copy-removebg-preview.png",
+          "image-removebg-preview (2).png"
+        ].map((img, i) => (
           <div key={i} className={`relative w-24 h-24 md:w-32 md:h-32 xl:w-40 xl:h-40 transform transition-all duration-700 hover:scale-110 hover:rotate-3 ${i % 2 === 0 ? 'translate-y-6' : '-translate-y-6'}`}>
             <Image 
-              src={`/animation/mascot${i}.png`} 
-              alt={`Mascot ${i}`} 
+              src={`/animation/${img}`} 
+              alt={`Animation ${i + 1}`} 
               fill 
               className="object-contain drop-shadow-2xl" 
             />
