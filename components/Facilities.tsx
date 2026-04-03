@@ -30,18 +30,19 @@ export default async function Facilities() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="relative w-full h-[180px] rounded-xl overflow-hidden shadow-sm">
+      <div className="relative w-full aspect-[3/2] sm:aspect-[16/10] rounded-[2rem] overflow-hidden shadow-xl border-4 border-white group">
         <Image
           src={imageSrc}
           alt="School Facilities"
           fill
           sizes="(max-width: 768px) 100vw, 400px"
-          className="object-cover"
+          className="object-cover group-hover:scale-110 transition-transform duration-1000"
         />
-        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1 shadow-sm border border-white/50">
-           <span className="text-teal-600 font-bold text-lg">15+</span>
-           <span className="text-[10px] text-gray-500 ml-1 block leading-tight">Years Exp.</span>
+        <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-md rounded-2xl px-4 py-2 shadow-2xl border border-white/50 z-10">
+           <span className="text-secondary font-black text-2xl">15+</span>
+           <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest block leading-tight">Years Exp.</span>
         </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
       </div>
 
       <div className="space-y-3">
