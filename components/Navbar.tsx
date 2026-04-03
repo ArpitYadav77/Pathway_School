@@ -37,6 +37,7 @@ const menuItems: MenuItem[] = [
     name: "Academics",
     submenu: [
       { name: "Curriculum Overview", link: "/academics/curriculum" },
+      { name: "Academics Google Form", link: "https://docs.google.com/forms/d/e/1FAIpQLSfORFw4Iq-NqCH-ucAxhOr7BDhuKw5pI0iOlLpCyM3wQ4oXCg/viewform" },
     ],
   },
 
