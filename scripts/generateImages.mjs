@@ -47,6 +47,40 @@ async function generate() {
   // Get all images from public/images recursively
   const imagesFiles = getFilesRecursive(imagesDir);
   
+  // Get all images from public/Pictures for the album gallery
+  const picturesFolders = [];
+  const albumSources = [
+    { dir: picturesDir, base: "Pictures" },
+    { dir: galleryDir, base: "images/gallery" }
+  ];
+
+  for (const source of albumSources) {
+    try {
+      if (fs.existsSync(source.dir)) {
+        const folders = fs.readdirSync(source.dir, { withFileTypes: true })
+          .filter(dirent => dirent.isDirectory());
+          
+        for (const folder of folders) {
+          const folderPath = path.join(source.dir, folder.name);
+          const files = getFiles(folderPath);
+          if (files.length > 0) {
+            // Avoid duplicates if folder exists in both places
+            if (!picturesFolders.find(p => p.slug === folder.name)) {
+              picturesFolders.push({
+                title: folder.name,
+                slug: folder.name,
+                coverImage: `/${source.base}/${folder.name}/${files[0]}`,
+                images: files.map(f => `/${source.base}/${folder.name}/${f}`)
+              });
+            }
+          }
+        }
+      }
+    } catch (e) {
+      console.warn(`Warning reading source directory ${source.dir}:`, e.message);
+    }
+  }
+
   // Specific gallery event folders
   const event1Files = getFiles(path.join(galleryDir, "event1")).map(f => `/images/gallery/event1/${f}`);
   const event2Files = getFiles(path.join(galleryDir, "event2")).map(f => `/images/gallery/event2/${f}`);
@@ -72,7 +106,7 @@ async function generate() {
 
   const activityKeywords = ["activities", "crafts", "annualday", "birthdaycelebrations", "fun"];
   const classKeywords = ["class", "playgroup", "nursery", "kindergarten", "lkg", "ukg", "academic"];
-  const eventKeywords = ["basant", "festivals", "celebrations", "lohri", "baisakhi", "carnival", "picnic", "summercamp", "fancydress", "friendship-day"];
+  const eventKeywords = ["basant", "festivals", "celebrations", "lohri", "baisakhi", "carnival", "picnic", "summercamp", "fancydress", "friendship-day", "diwali"];
   const informationalKeywords = ["controls", "infographic", "facilities", "dentalcheckup", "bestfacilities"];
   const heroKeywords = ["background", "banner", "hero", "backdrops", "kids-stage", "dsc_", "img_"];
 
@@ -104,11 +138,12 @@ async function generate() {
     heroFolder: heroFolderFiles,
     awardsFolder: awardsFolderFiles,
     building: buildingFiles,
+    pictures: picturesFolders,
   };
 
   const outputPath = path.join(rootDir, "lib", "imageData.json");
   fs.writeFileSync(outputPath, JSON.stringify(finalData, null, 2));
-  console.log(`Successfully generated lib/imageData.json with ${imagesFiles.length} images.`);
+  console.log(`Successfully generated lib/imageData.json with ${imagesFiles.length} images and ${picturesFolders.length} picture folders.`);
 }
 
 generate();

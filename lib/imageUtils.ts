@@ -17,6 +17,7 @@ interface CategorizedImages {
   heroFolder: string[];
   awardsFolder: string[];
   building: string[];
+  pictures?: {title: string, slug: string, coverImage: string, images: string[]}[];
 }
 
 export async function getCategorizedImages(): Promise<CategorizedImages> {
@@ -24,6 +25,14 @@ export async function getCategorizedImages(): Promise<CategorizedImages> {
 }
 
 export async function getGalleryImages(folderName: string): Promise<string[]> {
+  // 1. Try to find in Pictures (new generated data)
+  const data = imageData as CategorizedImages;
+  if (data.pictures) {
+    const album = data.pictures.find(p => p.slug === folderName || p.title === folderName);
+    if (album) return album.images;
+  }
+
+  // 2. Fallback to existing logic (though less reliable on Vercel)
   const possiblePaths = [
     path.join(process.cwd(), "public", "images", "gallery", folderName),
     path.join(process.cwd(), "public", "Pictures", folderName)
@@ -48,6 +57,17 @@ export async function getGalleryImages(folderName: string): Promise<string[]> {
 }
 
 export async function getLocalGalleryFolders(): Promise<{title: string, slug: string, coverImage: string}[]> {
+  // 1. Try to use pre-generated data from imageData.json (BEST FOR VERCEL)
+  const data = imageData as CategorizedImages;
+  if (data.pictures && data.pictures.length > 0) {
+    return data.pictures.map(p => ({
+      title: p.title,
+      slug: p.slug,
+      coverImage: p.coverImage
+    }));
+  }
+
+  // 2. Fallback to filesystem (works on localhost)
   const picturesPath = path.join(process.cwd(), "public", "Pictures");
   try {
     if (!fs.existsSync(picturesPath)) return [];
@@ -72,6 +92,13 @@ export async function getLocalGalleryFolders(): Promise<{title: string, slug: st
 }
 
 export async function getAllPictures(): Promise<string[]> {
+  // 1. Use pre-generated data
+  const data = imageData as CategorizedImages;
+  if (data.pictures && data.pictures.length > 0) {
+    return data.pictures.flatMap(p => p.images);
+  }
+
+  // 2. Fallback
   const picturesPath = path.join(process.cwd(), "public", "Pictures");
   let allImages: string[] = [];
   
