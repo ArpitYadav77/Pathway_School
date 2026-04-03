@@ -106,8 +106,8 @@ async function generate() {
 
   const activityKeywords = ["activities", "crafts", "annualday", "birthdaycelebrations", "fun"];
   const classKeywords = ["class", "playgroup", "nursery", "kindergarten", "lkg", "ukg", "academic"];
-  const eventKeywords = ["basant", "festivals", "celebrations", "lohri", "baisakhi", "carnival", "picnic", "summercamp", "fancydress", "friendship-day", "diwali"];
-  const informationalKeywords = ["controls", "infographic", "facilities", "dentalcheckup", "bestfacilities"];
+  const eventKeywords = ["basant", "festivals", "lohri", "baisakhi", "carnival", "picnic", "summercamp", "fancydress", "friendship-day", "diwali"];
+  const informationalKeywords = ["celebrations", "controls", "infographic", "facilities", "dentalcheckup", "bestfacilities"];
   const heroKeywords = ["background", "banner", "hero", "backdrops", "kids-stage", "dsc_", "img_"];
 
   imagesFiles.forEach((f) => {

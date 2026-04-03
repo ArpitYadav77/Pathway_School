@@ -6,12 +6,6 @@ import { getCategorizedImages } from "@/lib/imageUtils";
 
 const baseActivities = [
   {
-    image: "/images/carnival.png",
-    title: "Friendship Day",
-    description: "Celebrating the bonds of friendship with activities and fun.",
-    tag: "Event"
-  },
-  {
     image: "/images/summer-camp.png",
     title: "Summer Explorers",
     description: "An exciting summer program with outdoor learning and play.",
@@ -21,18 +15,6 @@ const baseActivities = [
     image: "/images/carnival.png",
     title: "Carnival 2025",
     description: "A day full of fun, games, and excitement for all children!",
-    tag: "Event"
-  },
-  {
-    image: "/images/summer-camp.png",
-    title: "Friendship Day",
-    description: "Celebrating the bonds of friendship with activities and fun.",
-    tag: "Event"
-  },
-  {
-    image: "/images/carnival.png",
-    title: "Summer Camp",
-    description: "An exciting summer program with outdoor activities and fun.",
     tag: "Event"
   },
 ];
