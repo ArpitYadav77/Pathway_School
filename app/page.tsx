@@ -42,13 +42,8 @@ export default function Home() {
           </Card>
         </div>
 
-        {/* Row 2: Photo Gallery + Facilities */}
-        <div className="lg:col-span-2">
-          <Card title="Photo Gallery" icon={<Camera size={24} />}>
-            <PhotoGallery />
-          </Card>
-        </div>
-        <div className="lg:col-span-2">
+        {/* Row 2: Admissions (Full Width) */}
+        <div className="lg:col-span-4">
           <Card title="Admissions 2026-27" icon={<MapPin size={24} />}>
             <Facilities />
           </Card>
