@@ -5,6 +5,11 @@ export const metadata: Metadata = {
   title: "The Seekers International - Where Learning is an Adventure",
   description: "The Seekers International is a premier preschool and kindergarten offering quality education for children. Our nurturing environment fosters creativity, curiosity, and a love for learning.",
   keywords: "preschool, kindergarten, school, education, children, learning, seekers international",
+  icons: {
+    icon: "/logo/image.png",
+    shortcut: "/logo/image.png",
+    apple: "/logo/image.png",
+  },
 };
 
 export default function RootLayout({
