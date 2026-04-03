@@ -83,7 +83,7 @@ export async function getLocalGalleryFolders(): Promise<{title: string, slug: st
       return {
         title: folder.name,
         slug: folder.name,
-        coverImage: files.length > 0 ? `/Pictures/${folder.name}/${files[0]}` : ""
+        coverImage: files.length > 0 ? `/Pictures/${folder.name}/${files[files.length - 1]}` : ""
       };
     });
   } catch (_e) {

@@ -88,7 +88,7 @@ export async function getGalleries(): Promise<SanityGallery[]> {
     title,
     "slug": slug.current,
     "images": images[].asset->url,
-    "coverImage": images[0].asset->url
+    "coverImage": images[-1].asset->url
   }`;
   return await client.fetch(query);
 }
@@ -99,7 +99,7 @@ export async function getGalleryBySlug(slug: string): Promise<SanityGallery | nu
     title,
     "images": images[].asset->url,
     "slug": slug.current,
-    "coverImage": images[0].asset->url
+    "coverImage": images[-1].asset->url
   }`;
   return await client.fetch(query, { slug });
 }
