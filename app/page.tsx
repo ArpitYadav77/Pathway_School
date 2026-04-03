@@ -1,5 +1,6 @@
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
+import Image from "next/image";
 import AboutSection from "@/components/AboutSection";
 import KidsActivities from "@/components/KidsActivities";
 import ClassesGrid from "@/components/ClassesGrid";
@@ -42,10 +43,23 @@ export default function Home() {
           </Card>
         </div>
 
-        {/* Row 2: Admissions (Full Width) */}
-        <div className="lg:col-span-4">
+        {/* Row 2: Admissions & Vision */}
+        <div className="lg:col-span-2">
           <Card title="Admissions 2026-27" icon={<MapPin size={24} />}>
             <Facilities />
+          </Card>
+        </div>
+        <div className="lg:col-span-2">
+          <Card title="Our Global Vision" icon={<School size={24} />}>
+            <div className="relative w-full aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-white/50 group bg-gray-50">
+               <Image
+                 src="/Pictures/image.png"
+                 alt="Global Vision"
+                 fill
+                 sizes="(max-width: 1280px) 100vw, 600px"
+                 className="object-contain group-hover:scale-105 transition-transform duration-1000"
+               />
+            </div>
           </Card>
         </div>
 
