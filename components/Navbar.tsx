@@ -38,6 +38,7 @@ const menuItems: MenuItem[] = [
     name: "Academics",
     submenu: [
       { name: "Curriculum Overview", link: "/academics/curriculum" },
+      { name: "Our Programmes", link: "/academics/programmes" },
     ],
   },
 
