@@ -30,7 +30,6 @@ const quickLinks = [
   "Academics",
   "Beyond Academics",
   "Facilities",
-  "Parents",
   "Admin Login",
 ];
 

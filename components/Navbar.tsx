@@ -44,13 +44,6 @@ const menuItems: MenuItem[] = [
 
   { name: "Facilities", link: "/facilities" },
   {
-    name: "Parents",
-    submenu: [
-      { name: "Parent's Speak", link: "/parents/speak" },
-      { name: "Parent Video Reviews", link: "/parents/videos" },
-    ],
-  },
-  {
     name: "Gallery",
     submenu: [
       { name: "Photo Gallery", link: "/gallery/photos" },
