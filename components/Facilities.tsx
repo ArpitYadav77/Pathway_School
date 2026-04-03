@@ -26,45 +26,19 @@ const facilities = [
 ];
 
 export default async function Facilities() {
-  const imageSrc = "/images/Fun/school_building_main.png";
+  const imageSrc = "/Pictures/Admission2026-2027.jpeg";
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="relative w-full aspect-[3/2] sm:aspect-[16/10] rounded-[2rem] overflow-hidden shadow-xl border-4 border-white group">
+    <div className="w-full">
+      <div className="relative w-full aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-white/50 group">
         <Image
           src={imageSrc}
-          alt="School Facilities"
+          alt="Admissions 2026-27"
           fill
-          sizes="(max-width: 768px) 100vw, 400px"
-          className="object-cover group-hover:scale-110 transition-transform duration-1000"
+          sizes="(max-width: 1280px) 100vw, 600px"
+          className="object-contain group-hover:scale-105 transition-transform duration-1000 bg-gray-50"
         />
-        <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-md rounded-2xl px-4 py-2 shadow-2xl border border-white/50 z-10">
-           <span className="text-secondary font-black text-2xl">15+</span>
-           <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest block leading-tight">Years Exp.</span>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-      </div>
-
-      <div className="space-y-3">
-        {facilities.map((facility, i) => (
-          <div
-            key={i}
-            className={`flex items-center gap-4 p-3 rounded-xl ${facility.color} border border-gray-100/50 hover:shadow-sm transition-all duration-300 group`}
-          >
-            <div className={`p-2 rounded-lg shrink-0 group-hover:scale-110 transition-transform duration-300 bg-white shadow-sm`}>
-              <facility.icon size={20} className={facility.iconColor} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <h4 className="font-bold text-gray-800 text-sm flex items-center gap-1.5">
-                {facility.title}
-                <CheckCircle size={12} className="text-teal-500" />
-              </h4>
-              <p className="text-gray-500 text-xs truncate">
-                {facility.description}
-              </p>
-            </div>
-          </div>
-        ))}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none" />
       </div>
     </div>
   );

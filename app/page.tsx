@@ -49,7 +49,7 @@ export default function Home() {
           </Card>
         </div>
         <div className="lg:col-span-2">
-          <Card title="Our Modern Facilities" icon={<MapPin size={24} />}>
+          <Card title="Admissions 2026-27" icon={<MapPin size={24} />}>
             <Facilities />
           </Card>
         </div>
