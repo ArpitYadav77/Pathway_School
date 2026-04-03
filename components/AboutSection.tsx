@@ -59,11 +59,6 @@ export default async function AboutSection() {
           </div>
         </div>
 
-        <div className="pt-2">
-            <button className="text-teal-600 font-extrabold text-sm uppercase tracking-widest flex items-center gap-2 hover:gap-3 transition-all">
-                Discover More About Our History →
-            </button>
-        </div>
       </div>
     </div>
   );
