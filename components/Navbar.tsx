@@ -31,13 +31,13 @@ const menuItems: MenuItem[] = [
     submenu: [
       { name: "Admission Process", link: "/admissions/process" },
       { name: "School Timing", link: "/admissions/timing" },
+      { name: "Admission Google Form", link: "https://docs.google.com/forms/d/e/1FAIpQLSfORFw4Iq-NqCH-ucAxhOr7BDhuKw5pI0iOlLpCyM3wQ4oXCg/viewform" },
     ],
   },
   {
     name: "Academics",
     submenu: [
       { name: "Curriculum Overview", link: "/academics/curriculum" },
-      { name: "Academics Google Form", link: "https://docs.google.com/forms/d/e/1FAIpQLSfORFw4Iq-NqCH-ucAxhOr7BDhuKw5pI0iOlLpCyM3wQ4oXCg/viewform" },
     ],
   },
 
