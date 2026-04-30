@@ -111,15 +111,7 @@ export default function AdmissionProcessPage() {
                       <p className="text-sm text-gray-500">Limited time offer for early birds.</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-4 p-4 bg-white/50 rounded-2xl border-l-4 border-accent">
-                    <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center text-accent shrink-0">
-                      <Clock size={20} />
-                    </div>
-                    <div>
-                      <p className="font-black text-primary uppercase tracking-tight">50% Waiver on annual charges</p>
-                      <p className="text-accent font-bold">Valid till 15th March 2025.</p>
-                    </div>
-                  </div>
+
                 </div>
               </div>
 
